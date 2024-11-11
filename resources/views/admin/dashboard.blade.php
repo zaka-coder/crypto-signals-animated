@@ -595,7 +595,7 @@ Dashboard
       <div class="card-body">
         <div class="d-flex align-items-start justify-content-between mb-3">
           <div class="">
-            <h5 class="mb-0">Recent Orders</h5>
+            <h5 class="mb-0">Upcoming Renewels</h5>
           </div>
           <div class="dropdown">
             <a href="javascript:;" class="dropdown-toggle-nocaret options dropdown-toggle" data-bs-toggle="dropdown">
@@ -608,12 +608,8 @@ Dashboard
             </ul>
           </div>
         </div>
-        <div class="order-search position-relative my-3">
-          <input class="form-control rounded-5 px-5" type="text" placeholder="Search">
-          <span class="material-icons-outlined position-absolute ms-3 translate-middle-y start-0 top-50">search</span>
-        </div>
         <div class="table-responsive">
-          <table class="table align-middle">
+          <table class="table align-middle" id="recent-renewels">
             <thead>
               <tr>
                 <th>Item Name</th>
@@ -739,3 +735,16 @@ Dashboard
 </div>
 
 @endsection
+@push('scripts')
+<script>
+  $(document).ready(function() {
+			var table = $('#recent-renewels').DataTable( {
+				lengthChange: false,
+				buttons: [ 'copy', 'excel', 'pdf', 'print']
+			} );
+
+			table.buttons().container()
+				.appendTo( '#recent-renewels_wrapper .col-md-6:eq(0)' );
+		} );
+</script>
+@endpush

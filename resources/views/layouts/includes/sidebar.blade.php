@@ -23,7 +23,7 @@
       </li>
       <li class="menu-label">Actions</li>
       <li>
-        <a  type="button" class="has-arrow">
+        <a type="button" class="has-arrow">
           <div class="parent-icon"><i class="material-icons-outlined">group</i>
           </div>
           <div class="menu-title">Member Controls</div>
