@@ -15,7 +15,7 @@
     <!--navigation-->
     <ul class="metismenu" id="sidenav">
       <li>
-        <a href="/">
+        <a href="/dashboard">
           <div class="parent-icon"><i class="material-icons-outlined">home</i>
           </div>
           <div class="menu-title">Dashboard</div>
@@ -29,9 +29,9 @@
           <div class="menu-title">Member Controls</div>
         </a>
         <ul>
-          <li><a href="/create-member"><i class="material-icons-outlined">arrow_right</i>Add Member</a>
+          <li><a href="{{ route('customers.create') }}"><i class="material-icons-outlined">arrow_right</i>Add Member</a>
           </li>
-          <li><a href="/members-list"><i class="material-icons-outlined">arrow_right</i>All Members</a>
+          <li><a href="{{ route('customers.index') }}"><i class="material-icons-outlined">arrow_right</i>All Members</a>
           </li>
           <li><a href="/expired-members"><i class="material-icons-outlined">arrow_right</i>Expired Members</a>
           </li>

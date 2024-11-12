@@ -303,8 +303,12 @@
             </div>
           </div>
           <hr class="dropdown-divider">
-          <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
+          <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;" onclick="document.getElementById('logout-form').submit();"><i
               class="material-icons-outlined">power_settings_new</i>Logout</a>
+
+              <form action="{{ route('logout') }}" method="POST" class="d-none" id="logout-form">
+                @csrf
+              </form>
         </div>
       </li>
     </ul>
