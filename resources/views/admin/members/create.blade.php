@@ -39,13 +39,20 @@
             </div>
             <div class="mb-4">
               <h5 class="mb-3">Subscription Plan <span class="text-danger">*</span></h5>
-              <select class="form-select" name="category_id">
+              <select class="form-select" name="category_id" id="category">
                 <option value="">Select...</option>
                 @foreach ($categories as $key => $category)
-                  <option value="{{ $category->id }}">{{ $category->name }}</option>
+                  <option value="{{ $category->id }}" data-price="{{ $category->price }}">{{ $category->name }}</option>
                 @endforeach
               </select>
               @error('category_id')
+                <span class="text-danger">{{ $message }}</span>
+              @enderror
+            </div>
+            <div class="mb-4">
+              <h5 class="mb-3">Charges <span class="text-danger">*</span></h5>
+              <input type="number" step="0.01" class="form-control" name="price" id="price">
+              @error('price')
                 <span class="text-danger">{{ $message }}</span>
               @enderror
             </div>
@@ -69,6 +76,16 @@
         </div>
       </div>
     </div>
-
   </div>
 @endsection
+
+@push('scripts')
+  <script>
+    $(document).ready(function() {
+      $('#category').on('change', function() {
+        var price = $(this).find(':selected').data('price'); // Get the data-price attribute
+        $('#price').val(price); // Set the value to the price input
+      });
+    })
+  </script>
+@endpush

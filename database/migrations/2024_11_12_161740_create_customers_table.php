@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('status')->default('active');
             $table->text('remarks')->nullable();
             $table->boolean('is_blocked')->default(0);
+            $table->timestamp('blocked_at')->nullable();
+            $table->timestamp('unblocked_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

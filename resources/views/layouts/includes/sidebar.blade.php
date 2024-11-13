@@ -49,7 +49,15 @@
           <div class="menu-title">Categories</div>
         </a>
         <ul>
-          <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Monthly</a>
+          @php
+            $categories = \App\Models\Category::all();
+          @endphp
+
+          @foreach ($categories as $category)
+            <li><a href="{{ route('customers.index', ['filter' => $category->name]) }}"><i class="material-icons-outlined">arrow_right</i>{{ $category->name }}</a>
+            </li>
+          @endforeach
+          {{-- <li><a href="{{ route('customers.index', ['filter' => 'Monthly']) }}"><i class="material-icons-outlined">arrow_right</i>Monthly</a>
           </li>
           <li><a href="#"><i class="material-icons-outlined">arrow_right</i>6-Months</a>
           </li>
@@ -58,7 +66,7 @@
           <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Lifetime</a>
           </li>
           <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Free</a>
-          </li>
+          </li> --}}
         </ul>
       </li>
       <li class="menu-label">Settings</li>

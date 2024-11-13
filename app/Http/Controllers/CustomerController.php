@@ -9,25 +9,41 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-    $customers = Customer::all();
+    $customers = Customer::query();
+
+    $filter = $request->query('filter');
+    if ($filter) {
+      $customers = $customers->whereHas('category', function ($query) use ($filter) {
+        $query->where('name', 'like', '%' . $filter . '%');
+      });
+    }
+
+    $customers = $customers->with('category')->get();
     return view('admin.members.index', get_defined_vars());
   }
+
   public function blocked()
   {
     // $customers = Customer::all();
     // return view('admin.members.index', get_defined_vars());
+    return view('admin.members.blocked-members');
   }
+
   public function expired()
   {
-    // $customers = Customer::all();
-    // return view('admin.members.index', get_defined_vars());
+    $customers = Customer::where('expires_at', '<', now())
+      ->orWhere('status', 'expired')
+      ->get();
+
+    return view('admin.members.expired-members', compact('customers'));
   }
   public function trashed()
   {
     // $customers = Customer::all();
     // return view('admin.members.index', get_defined_vars());
+    return view('admin.members.recyclebin');
   }
   public function create()
   {
@@ -43,6 +59,7 @@ class CustomerController extends Controller
       'whatsapp' => 'required|string|max:20', // Adjust max length as per your requirement
       'email' => 'nullable|email|max:255|unique:customers,email', // nullable and unique for customers table
       'category_id' => 'required|exists:categories,id',
+      'price' => 'required|numeric',
       'starts_at' => 'required|date',
       'remarks' => 'nullable|string',
     ], [
@@ -86,6 +103,7 @@ class CustomerController extends Controller
       'whatsapp' => $validatedData['whatsapp'],
       'remarks' => $validatedData['remarks'] ?? null,
       'category_id' => $category->id,
+      'price' => $validatedData['price'],
       'starts_at' => $startDate,
       'expires_at' => $expiresAt,
     ]);
@@ -93,6 +111,7 @@ class CustomerController extends Controller
     // create subscription history
     $customer->subscriptionsHistory()->create([
       'category_id' => $category->id,
+      'price' => $validatedData['price'],
       'starts_at' => $startDate,
       'expires_at' => $expiresAt,
     ]);
@@ -105,7 +124,21 @@ class CustomerController extends Controller
 
   public function update(Request $request, $id) {}
 
-  public function show($id) {}
+  public function show(Customer $customer)
+  {
+    return view('admin.members.show', compact('customer'));
+  }
 
-  public function destroy($id) {}
+  public function destroy(Customer $customer)
+  {
+    $customer->delete();
+    return redirect()->route('customers.index')->with('success', 'Member deleted successfully!');
+  }
+
+  public function restore($id)
+  {
+    $customer = Customer::onlyTrashed()->findOrFail($id);
+    $customer->restore();
+    return redirect()->back()->with('success', 'Member restored successfully.');
+  }
 }
