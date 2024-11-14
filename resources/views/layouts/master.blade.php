@@ -229,6 +229,13 @@
   </script>
   <script src="{{theme('assets/js/dashboard2.js')}}"></script>
   <script src="{{theme('assets/js/main.js')}}"></script>
+  <script>
+    function deleteMember(id) {
+      if (confirm('Are you sure you want to delete this member?')) {
+        document.getElementById('delete-form-' + id).submit();
+      }
+    }
+  </script>
   @stack('scripts')
 </body>
 

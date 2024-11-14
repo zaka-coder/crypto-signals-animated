@@ -25,15 +25,15 @@ Route::middleware(['auth'])->group(function () {
   });
 
 
-  Route::get('/create-member', function () {
-    return view('admin.members.create');
-  });
-  Route::get('/edit-member', function () {
-    return view('admin.members.edit');
-  });
-  Route::get('/members-list', function () {
-    return view('admin.members.index');
-  });
+  // Route::get('/create-member', function () {
+  //   return view('admin.members.create');
+  // });
+  // Route::get('/edit-member', function () {
+  //   return view('admin.members.edit');
+  // });
+  // Route::get('/members-list', function () {
+  //   return view('admin.members.index');
+  // });
   // Route::get('/profile', function () {
   //   return view('admin.members.show');
   // });
@@ -54,11 +54,12 @@ Route::middleware(['auth'])->group(function () {
     return view('admin.members.recyclebin', compact('customers'));
   });
 
-  // Route::get('customers/blocked', [CustomerController::class, 'blocked'])->name('customers.blocked');
-  // Route::get('customers/expired', [CustomerController::class, 'expired'])->name('members.expired');
-  // Route::get('customers/trashed', [CustomerController::class, 'trashed'])->name('customers.trashed');
-
 
   Route::post('customers/{customer}/restore', [CustomerController::class, 'restore'])->name('customers.restore');
+  Route::get('customers/{customer}/block-toggle', [CustomerController::class, 'blockToggle'])->name('customers.blockToggle');
+
+  Route::get('customers/{customer}/renew-plan', [CustomerController::class, 'renewPlan'])->name('customers.renewPlan');
+  Route::post('customers/{customer}/renew-plan/store', [CustomerController::class, 'renewPlanStore'])->name('customers.renewPlanStore');
+
 
 });

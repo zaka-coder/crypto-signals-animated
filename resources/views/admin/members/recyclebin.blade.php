@@ -52,10 +52,6 @@
                       <i class="bi bi-three-dots"></i>
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{{ route('customers.show', $member) }}"><i
-                            class="bi bi-person me-2"></i>Profile</a>
-                      </li>
-                      <li class="dropdown-divider"></li>
                       <li><a class="dropdown-item text-success" href="javascript:;" onclick="restoreMember({{ $member->id }})"><i
                             class="bi bi-recycle me-2"></i>Restore</a>
 

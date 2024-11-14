@@ -44,14 +44,23 @@
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="{{ route('customers.show', $member) }}"><i class="bi bi-person me-2"></i>Profile</a>
                       </li>
-                      <li><a class="dropdown-item" href="javascript:;"><i class="bi bi-arrow-repeat me-2"></i>Renew
+                      <li><a class="dropdown-item" href="{{ route('customers.renewPlan', $member) }}"><i class="bi bi-arrow-repeat me-2"></i>Renew
                           Plan</a>
                       </li>
-                      <li><a class="dropdown-item" href="javascript:;"><i class="bi bi-ban me-2"></i>Block</a>
+                      <li><a class="dropdown-item" href="{{ route('customers.blockToggle', $member) }}">@if($member->is_blocked) <i class="bi bi-check2-circle me-2"></i>Unblock @else <i class="bi bi-ban me-2"></i>Block @endif</a>
                       </li>
                       <li class="dropdown-divider"></li>
-                      <li><a class="dropdown-item text-danger" href="javascript:;"><i
-                            class="bi bi-trash-fill me-2"></i>Delete</a></li>
+                      <li>
+                        <a class="dropdown-item text-danger" href="javascript:;"
+                          onclick="deleteMember({{ $member->id }})"><i class="bi bi-trash-fill me-2"></i>Delete</a>
+
+                        {{-- Delete Form --}}
+                        <form id="delete-form-{{ $member->id }}" action="{{ route('customers.destroy', $member) }}"
+                          method="POST" class="d-none">
+                          @csrf
+                          @method('DELETE')
+                        </form>
+                      </li>
                     </ul>
                   </div>
                 </td>

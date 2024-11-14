@@ -15,10 +15,19 @@
           </div>
           <div class="w-100 mb-5">
             <div class="btn-group w-100">
-              <a href="/edit-member" class="btn btn-outline-success"><i class="bi bi-pencil"></i> Edit</a>
-              <button type="button" class="btn btn-outline-danger"><i class="bi bi-ban"></i> Block</button>
-              <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash3"></i> Delete</button>
+              <a href="{{ route('customers.edit', $customer) }}" class="btn btn-outline-success"><i
+                  class="bi bi-pencil"></i> Edit</a>
+              <a href="{{ route('customers.blockToggle', $customer) }}" class="btn btn-outline-warning"> @if($customer->is_blocked) <i class="bi bi-check2-circle"></i> Unblock @else <i class="bi bi-ban"></i> Block @endif</a>
+              <button type="button" class="btn btn-outline-danger" onclick="deleteMember({{ $customer->id }})"><i
+                  class="bi bi-trash3"></i> Delete</button>
             </div>
+
+            <!-- Delete Form -->
+            <form id="delete-form-{{ $customer->id }}" action="{{ route('customers.destroy', $customer) }}" method="POST"
+              class="d-none">
+              @csrf
+              @method('DELETE')
+            </form>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item border-top">
@@ -70,7 +79,7 @@
             <li class="list-group-item">
               <b>Status</b>
               <br>
-              <span class="text-capitalize">{{ $customer->status }}</span>
+              <span class="text-capitalize">{{ $customer->is_blocked ? 'Blocked' : $customer->status }}</span>
             </li>
           </ul>
 
@@ -88,30 +97,19 @@
                 <tr>
                   <th class="align-middle text-center">Sr .No</th>
                   <th class="align-middle text-center">Subscription Plan</th>
-                  <th class="align-middle text-center">Actions</th>
+                  <th class="align-middle text-center">Charges</th>
+                  <th class="align-middle text-center">Start Date</th>
+                  <th class="align-middle text-center">End Date</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($customer->subscriptionsHistory as $key => $subscription)
+                @foreach ($customer->subscriptionsHistory()->orderBy('id', 'desc')->get() as $key => $subscription)
                   <tr>
                     <td class="align-middle text-center">{{ ++$key }}</td>
                     <td class="align-middle text-center">{{ $subscription->category->name }}</td>
-                    <td class="align-middle text-center">
-                      <div class="dropdown">
-                        <button class="btn btn-sm dropdown-toggle dropdown-toggle-nocaret" type="button"
-                          data-bs-toggle="dropdown">
-                          <i class="bi bi-three-dots"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="javascript:;"><i class="bi bi-arrow-repeat me-2"></i>Renew
-                              Plan</a></li>
-                          <li><a class="dropdown-item" href="javascript:;"><i class="bi bi-ban me-2"></i>Block</a></li>
-                          <li class="dropdown-divider"></li>
-                          <li><a class="dropdown-item text-danger" href="javascript:;"><i
-                                class="bi bi-trash-fill me-2"></i>Delete</a></li>
-                        </ul>
-                      </div>
-                    </td>
+                    <td class="align-middle text-center">{{ $subscription->price }}</td>
+                    <td class="align-middle text-center">{{ $subscription->starts_at->format('d/m/Y') }}</td>
+                    <td class="align-middle text-center">{{ $subscription->expires_at->format('d/m/Y') }}</td>
                   </tr>
                 @endforeach
               </tbody>

@@ -8,8 +8,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Customer extends Model
 {
   use SoftDeletes;
-  
+
   protected $guarded = ['id'];
+
+  protected $casts = [
+    'starts_at' => 'datetime',
+    'expires_at' => 'datetime',
+    'blocked_at' => 'datetime',
+    'unblocked_at' => 'datetime',
+    'created_at' => 'datetime',
+    'updated_at' => 'datetime',
+    'deleted_at' => 'datetime',
+  ];
 
   public function subscriptionsHistory()
   {
