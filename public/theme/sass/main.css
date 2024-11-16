@@ -239,7 +239,7 @@ input::placeholder {
   color: rgba(var(--bs-body-color-rgb), var(--bs-text-opacity)) !important;
   font-size: 13px;
   font-weight: 400;
-  width: 250px!important;
+  width: 250px !important;
 }
 .top-header .navbar .nav-item .dropdown-notify .notify-time {
   color: #939aa0;
@@ -1603,3 +1603,87 @@ form select.error:focus {
     right: 2rem;
   }
 } /*# sourceMappingURL=main.css.map */
+.row:has(div.dataTables_info) {
+  margin-top: 30px !important;
+  padding-bottom: 20px !important;
+}
+.row:has(div.dt-buttons) {
+  margin-bottom: 30px !important;
+}
+@media (max-width: 768px) {
+  .col-sm-12:has(div.dataTables_filter) {
+    display: flex !important;
+    padding: 0 !important;
+    margin-top: 20px !important;
+  }
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 3px !important;
+  width: 3px !important;
+}
+.table-responsive::-webkit-scrollbar-track {
+  background-color: black;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 120px;
+}
+.active > .page-link {
+  background-color: #0a0f2b;
+  border-color: #0a0f2b;
+}
+@media (max-width: 767.98px) {
+  .table-bordered > :not(caption) > * {
+    border: none !important;
+  }
+  table {
+    border: none !important;
+  }
+  th {
+    display: none !important;
+  }
+
+  tr:not(:last-child) td:last-child {
+    margin-bottom: 1rem !important;
+  }
+
+  td {
+    background-color: var(--bs-table-hover-bg) !important;
+    display: block !important;
+    border: none !important;
+    padding-inline: 0.75rem !important;
+    text-align: start !important;
+  }
+
+  td:first-child {
+    border-top-right-radius: var(--bs-border-radius);
+    border-top-left-radius: var(--bs-border-radius);
+    padding-top: 0.75rem;
+  }
+
+  td:last-child {
+    border-bottom-right-radius: var(--bs-border-radius);
+    border-bottom-left-radius: var(--bs-border-radius);
+    padding-bottom: 0.75rem;
+  }
+
+  td::before {
+    content: attr(data-cell) ":  ";
+    font-weight: bold;
+    color: bisque;
+  }
+
+  [data-cell="Actions"]:not(.dropdown) .btn {
+    flex-grow: 1;
+    padding-block: 10px;
+  }
+  [data-cell="Actions"] {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  [data-cell="Actions"] .d-flex {
+    padding-block-start: 0.5rem;
+  }
+}
