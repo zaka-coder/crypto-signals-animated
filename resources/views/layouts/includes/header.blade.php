@@ -161,21 +161,28 @@
             </div>
           </div>
           <div class="notify-list">
-            <div>
-              <a class="dropdown-item border-bottom py-2" href="javascript:;">
+            @for ($a=0;$a<3;$a++) <div>
+              <a class="dropdown-item border-bottom py-2 position-relative" href="javascript:;"
+                style="white-space: normal">
                 <div class="d-flex align-items-center gap-3">
                   <div class="">
                     <h5 class="notify-title">Nasir</h5>
-                    <p class="mb-0 notify-desc">Nasir's Subscription is ending in an hour.please tell</p>
-                    <p class="mb-0 notify-time">Today</p>
+                    <p class="mb-0 notify-desc">Nasir's Subscription is ending in an hour.please Notify him.</p>
+                    <div class="d-flex align-items-center justify-content-end">
+                      <p class="mb-0 notify-time">23 March 2024 12:00 PM</p>
+                    </div>
                   </div>
-                  <div class="notify-close position-absolute end-0 me-3">
+                  <div class="notify-close position-absolute  me-3" style="top: 8px;right:-7px">
                     <i class="material-icons-outlined fs-6">close</i>
                   </div>
                 </div>
               </a>
-            </div>
+              @endfor
+              <div class="text-center mt-4">
+                <a href="#" class="text-white btn btn-secondary">See all Notifications</a>
+              </div>
           </div>
+        </div>
         </div>
       </li>
       <li class="nav-item dropdown">

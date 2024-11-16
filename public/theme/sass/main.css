@@ -239,7 +239,6 @@ input::placeholder {
   color: rgba(var(--bs-body-color-rgb), var(--bs-text-opacity)) !important;
   font-size: 13px;
   font-weight: 400;
-  width: 250px !important;
 }
 .top-header .navbar .nav-item .dropdown-notify .notify-time {
   color: #939aa0;
