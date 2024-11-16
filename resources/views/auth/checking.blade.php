@@ -21,7 +21,7 @@
   <header class="header-area header-one header--sticky">
     <div class="header-container-one">
       <div class="header-wrapper">
-        <a href="/" class="logo">
+        <a href="index.html" class="logo">
           <img src="{{landingTheme('assets/images/logo/logo.png')}}" alt="logo" />
         </a>
         <div class="header-right">

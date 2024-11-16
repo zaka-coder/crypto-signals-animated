@@ -34,9 +34,7 @@ Route::middleware(['auth'])->group(function () {
   // Route::get('/members-list', function () {
   //   return view('admin.members.index');
   // });
-  // Route::get('/profile', function () {
-  //   return view('admin.members.show');
-  // });
+
   Route::get('/blocked-members', function () {
     $customers = \App\Models\Customer::where('is_blocked', true)->get();
     return view('admin.members.blocked-members', compact('customers'));
@@ -60,6 +58,7 @@ Route::middleware(['auth'])->group(function () {
 
   Route::get('customers/{customer}/renew-plan', [CustomerController::class, 'renewPlan'])->name('customers.renewPlan');
   Route::post('customers/{customer}/renew-plan/store', [CustomerController::class, 'renewPlanStore'])->name('customers.renewPlanStore');
-
-
+});
+Route::get('/checking', function () {
+  return view('auth.checking');
 });
