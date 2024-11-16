@@ -10,7 +10,7 @@ Dashboard
         <div class="row">
           <div class="col-12 col-sm-7">
             <div class="d-flex align-items-center gap-3 mb-5">
-              <img src="{{theme('assets/images/avatars/02.png')}}" class="rounded-circle bg-grd-info p-1" width="60"
+              <img src="{{theme('assets/images/user.png')}}" class="rounded-circle bg-grd-info p-1" width="60"
                 height="60" alt="user">
               <div class="">
                 <p class="mb-0 fw-semibold">Welcome back</p>
