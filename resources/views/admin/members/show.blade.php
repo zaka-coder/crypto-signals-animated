@@ -108,11 +108,17 @@ Profile
             <tbody>
               @foreach ($customer->subscriptionsHistory()->orderBy('id', 'desc')->get() as $key => $subscription)
               <tr>
-                <td class="align-middle text-center">{{ ++$key }}</td>
-                <td class="align-middle text-center">{{ $subscription->category->name }}</td>
-                <td class="align-middle text-center">{{ $subscription->price }}</td>
-                <td class="align-middle text-center">{{ $subscription->starts_at->format('d/m/Y') }}</td>
-                <td class="align-middle text-center">{{ $subscription->expires_at->format('d/m/Y') }}</td>
+                <td data-cell="Sr.No" class="align-middle " style="text-align: center">{{ ++$key }}</td>
+                <td data-cell="Subscription Plan" class="align-middle " style="text-align: center">{{
+                  $subscription->category->name }}
+                </td>
+                <td data-cell="Charges" class="align-middle " style="text-align: center">{{ $subscription->price }}</td>
+                <td data-cell="Joining Date" class="align-middle " style="text-align: center">{{
+                  $subscription->starts_at->format('d/m/Y') }}
+                </td>
+                <td data-cell="End Date" class="align-middle " style="text-align: center">{{
+                  $subscription->expires_at->format('d/m/Y') }}
+                </td>
               </tr>
               @endforeach
             </tbody>
