@@ -22,9 +22,13 @@
     <div class="row mb-4">
       <div class="col-md-12 m-auto">
         <label for="password" class=" col-form-label ">{{ __('Password') }}</label>
-        <input id="password" type="password" class="form-control py-2 @error('password') is-invalid @enderror"
-          name="password" required autocomplete="current-password">
-
+        <div class="position-relative">
+          <input id="password" type="password" class="form-control py-2 @error('password') is-invalid @enderror"
+            name="password" required autocomplete="current-password">
+          <span class="bg-transparent border-0 position-absolute top-50 translate-middle-y toggle-password bi bi-eye"
+            style="right: 10px" toggle="#password">
+          </span>
+        </div>
         @error('password')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
@@ -63,3 +67,21 @@
   </form>
 </div>
 @endsection
+@push('scripts')
+<script>
+  function togglePasswordVisibility(toggleButtonSelector, inputSelector) {
+      $(toggleButtonSelector).click(function() {
+          $(this).toggleClass("bi-eye bi-eye-slash");
+          var input = $(inputSelector);
+          if (input.attr("type") == "password") {
+              input.attr("type", "text");
+          } else {
+              input.attr("type", "password");
+          }
+      });
+  }
+
+  // Example usage
+  togglePasswordVisibility(".toggle-password", "#password");
+</script>
+@endpush
