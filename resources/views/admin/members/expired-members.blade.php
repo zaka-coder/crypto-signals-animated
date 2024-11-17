@@ -26,17 +26,24 @@ Expired Members
         <tbody>
           @foreach ($customers as $key => $member)
           <tr>
-            <td class="align-middle text-center">{{ ++$key }}</td>
-            <td class="align-middle text-center">{{ $member->name ?? '' }}</td>
-            <td class="align-middle text-center">{{ $member->discord_username ?? '' }}</td>
-            <td class="align-middle text-center">{{ $member->whatsapp ?? '' }}</td>
-            <td class="align-middle text-center">{{ $member->email ?? '' }}</td>
-            <td class="align-middle text-center">{{ $member->category->name ?? '' }}</td>
-            <td class="align-middle text-center">{{ $member->price ?? '' }}</td>
-            <td class="align-middle text-center">{{ $member->starts_at ?? '' }}</td>
-            <td class="align-middle text-center">{{ $member->expires_at ?? '' }}</td>
-            <td class="align-middle text-center">{{ $member->remarks ?? '' }}</td>
-            <td class="align-middle text-center">
+            <td data-cell="Sr.No" class="align-middle " style="text-align: center">{{ ++$key }}</td>
+            <td data-cell="Member Name" class="align-middle " style="text-align: center">{{ $member->name ?? '' }}</td>
+            <td data-cell="Discord Username" class="align-middle " style="text-align: center">{{
+              $member->discord_username ??
+              '' }}</td>
+            <td data-cell="Whatsapp No" class="align-middle " style="text-align: center">{{ $member->whatsapp ?? '' }}
+            </td>
+            <td class="align-middle " style="text-align: center">{{ $member->email ?? '' }}</td>
+            <td data-cell="Subscription Plan" class="align-middle " style="text-align: center">{{
+              $member->category->name ?? '' }}</td>
+            <td data-cell="Charges" class="align-middle " style="text-align: center">{{ $member->price ?? '' }}</td>
+            <td data-cell="Joining Date" class="align-middle " style="text-align: center">{{ $member->starts_at ?? '' }}
+            </td>
+            <td data-cell="Expired On" class="align-middle " style="text-align: center">{{ $member->expires_at ?? ''
+              }}</td>
+            <td data-cell="Remarks" data-cell="Remarks" class="align-middle " style="text-align: center">{{
+              $member->remarks ?? '' }}</td>
+            <td data-cell="Actions" class="align-middle " style="text-align: center">
               <div class="dropdown">
                 <button class="btn btn-sm dropdown-toggle dropdown-toggle-nocaret" type="button"
                   data-bs-toggle="dropdown">

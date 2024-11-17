@@ -27,26 +27,30 @@ Blocked Members
         <tbody>
           @foreach ($customers as $key => $member)
           <tr>
-            <td class="align-middle text-center">{{ ++$key }}</td>
-            <td class="align-middle text-center">{{ $member->name ?? '' }}</td>
-            <td class="align-middle text-center">{{ $member->discord_username ?? '' }}</td>
-            <td class="align-middle text-center">{{ $member->whatsapp ?? '' }}</td>
-            <td class="align-middle text-center">{{ $member->email ?? '' }}</td>
-            <td class="align-middle text-center">{{ $member->category->name ?? '' }}</td>
-            <td class="align-middle text-center">{{ $member->price ?? '' }}</td>
-            <td class="align-middle text-center">
+            <td data-cell="Sr.No" class="align-middle " style="text-align: start">{{ ++$key }}</td>
+            <td data-cell="Member Name" class="align-middle " style="text-align: start">{{ $member->name ?? '' }}</td>
+            <td data-cell="Discord Username" class="align-middle " style="text-align: start">{{
+              $member->discord_username ?? '' }}</td>
+            <td data-cell="Whatsapp No" class="align-middle " style="text-align: start">{{ $member->whatsapp ?? '' }}
+            </td>
+            <td data-cell="Email Address" class="align-middle " style="text-align: start">{{ $member->email ?? '' }}
+            </td>
+            <td data-cell="Subscription Plan" class="align-middle " style="text-align: start">{{ $member->category->name
+              ?? '' }}</td>
+            <td data-cell=" Charges" class="align-middle " style="text-align: start">{{ $member->price ?? '' }}</td>
+            <td data-cell="Joining Date" class="align-middle " style="text-align: start">
               {{ \Carbon\Carbon::parse($member->starts_at)->format('d/m/Y') ?? '' }}</td>
-            <td class="align-middle text-center">
+            <td data-cell="Remaining Days" class="align-middle " style="text-align: start">
               @if ($member->expires_at)
               {{ max(0, (int) \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::parse($member->expires_at))) }} days
               @else
               ''
               @endif
             </td>
-            <td class="align-middle text-center">
+            <td data-cell="Blocked On" class="align-middle " style="text-align: start">
               {{ \Carbon\Carbon::parse($member->blocked_at)->format('d/m/Y') ?? '' }}</td>
-            <td class="align-middle text-center">{{ $member->remarks ?? '' }}</td>
-            <td class="align-middle text-center">
+            <td data-cell="Remarks" class="align-middle " style="text-align: start">{{ $member->remarks ?? '' }}</td>
+            <td data-cell="Actions" class="align-middle " style="text-align: start">
               <div class="dropdown">
                 <button class="btn btn-sm dropdown-toggle dropdown-toggle-nocaret" type="button"
                   data-bs-toggle="dropdown">
