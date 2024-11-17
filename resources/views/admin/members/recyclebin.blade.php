@@ -85,7 +85,7 @@ Recyclebin
   $(document).ready(function() {
       var table = $('#deleted-members').DataTable({
         lengthChange: false,
-        buttons: ['copy', 'excel', 'pdf', 'print']
+        buttons: ['copy', 'excel']
       });
 
       table.buttons().container()

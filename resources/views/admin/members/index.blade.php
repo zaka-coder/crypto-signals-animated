@@ -135,7 +135,7 @@ All Members
   $(document).ready(function() {
       var table = $('#all-members').DataTable({
         lengthChange: false,
-        buttons: ['copy', 'excel', 'pdf', 'print'],
+        buttons: ['copy', 'excel'],
         // sort: false
       });
 

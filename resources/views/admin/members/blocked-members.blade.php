@@ -91,7 +91,7 @@ Blocked Members
   $(document).ready(function() {
       var table = $('#blocked-members').DataTable({
         lengthChange: false,
-        buttons: ['copy', 'excel', 'pdf', 'print']
+        buttons: ['copy', 'excel']
       });
 
       table.buttons().container()

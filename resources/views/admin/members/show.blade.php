@@ -135,7 +135,7 @@ Profile
   $(document).ready(function() {
       var table = $('#specific-member').DataTable({
         lengthChange: false,
-        buttons: ['copy', 'excel', 'pdf', 'print']
+        buttons: ['copy', 'excel']
       });
 
       table.buttons().container()
