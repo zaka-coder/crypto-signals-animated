@@ -25,17 +25,20 @@
         <div class="header-right">
           <nav class="nav-area drop-down-rts">
             <ul class="navbar-nav-1">
-              <li class="menu-item main-nav-on menu-item-has-children">
+              <li class="menu-item main-nav-on">
                 <a href="#home"><span class="rolling-text">Home</span></a>
               </li>
-              <li class="menu-item main-nav-on menu-item-has-children">
+              <li class="menu-item main-nav-on">
                 <a href="#ourServices"><span class="rolling-text">Our Services</span></a>
               </li>
-              <li class="menu-item main-nav-on menu-item-has-children">
+              <li class="menu-item main-nav-on">
                 <a href="#pricingPlans"><span class="rolling-text">Pricing Plans</span></a>
               </li>
-              <li class="menu-item main-nav-on menu-item-has-children">
+              <li class="menu-item main-nav-on">
                 <a href="#contactUs"><span class="rolling-text">Contact us</span></a>
+              </li>
+              <li class="menu-item main-nav-on">
+                <a href="{{route('login')}}"><span class="rolling-text">Log In</span></a>
               </li>
             </ul>
           </nav>
@@ -110,6 +113,9 @@
                         </li>
                         <li class="menu-item">
                           <a href="#">Contact us<span></a>
+                        </li>
+                        <li class="menu-item">
+                          <a href="{{route('login')}}">Log In<span></a>
                         </li>
                       </ul>
                     </div>

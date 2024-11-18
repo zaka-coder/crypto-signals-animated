@@ -396,7 +396,7 @@
         </div>
       </div>
     </div>
-    <div class="row g-5">
+    <div class="row g-5" id="pricingPlans">
       <div class="col-lg-4 col-md-12 col-sm-12 col-12">
         <div class="pricing-left-area">
           <div class="title-area">
