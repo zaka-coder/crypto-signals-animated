@@ -5,7 +5,7 @@
 
 
 <!-- rts banenr area start -->
-<div class="banner-area banner-style-one banner-bg-1 hero__area-3 banner__jump">
+<div class="banner-area banner-style-one banner-bg-1 hero__area-3 banner__jump" id="home">
   <div class="shape-image">
     <img src="{{landingTheme('assets/images/banner/06.png')}}" alt="banner" />
   </div>

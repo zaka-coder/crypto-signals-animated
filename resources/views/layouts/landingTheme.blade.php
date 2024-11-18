@@ -12,6 +12,15 @@
   <link rel="stylesheet" href="{{landingTheme('assets/css/plugins/animate.min.css')}}" />
   <link rel="stylesheet" href="{{landingTheme('assets/css/vendor/bootstrap.min.css')}}" />
   <link rel="stylesheet" href="{{landingTheme('assets/css/style.css')}}" />
+  <style>
+    #pricingPlans {
+      scroll-margin-top: 80px !important;
+    }
+
+    #ourServices {
+      scroll-margin-top: 110px !important;
+    }
+  </style>
 </head>
 
 <body class="index-one">
