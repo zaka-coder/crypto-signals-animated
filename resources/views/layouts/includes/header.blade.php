@@ -272,12 +272,13 @@
             </div>
           </div>
           <div class="notify-list">
+            @foreach ($notifications as $notification)
             <div>
-              <a class="dropdown-item border-bottom py-2" href="javascript:;">
+              <a class="dropdown-item border-bottom py-2" href="{{ route('notifications.show', $notification) }}">
                 <div class="d-flex align-items-center gap-3">
                   <div class="">
-                    <h5 class="notify-title">Nasir</h5>
-                    <p class="mb-0 notify-desc">Nasir's Subscription is ending in an hour.please tell</p>
+                    <h5 class="notify-title">{{ $notification->customer->discord_username }}</h5>
+                    <p class="mb-0 notify-desc">{{ $notification->title  }}</p>
                     <p class="mb-0 notify-time">Today</p>
                   </div>
                   <div class="notify-close position-absolute end-0 me-3">
@@ -286,6 +287,7 @@
                 </div>
               </a>
             </div>
+            @endforeach
           </div>
         </div>
       </li>

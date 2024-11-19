@@ -8,4 +8,8 @@ class Notification extends Model
 {
   protected $guarded = ['id'];
 
+  protected $casts = [
+    'is_read' => 'boolean',
+  ];
+
 }
