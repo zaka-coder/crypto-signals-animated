@@ -95,6 +95,9 @@ All Members
                   <li><a class="dropdown-item" href="{{ route('customers.show', $member) }}"><i
                         class="bi bi-person me-2"></i>Profile</a>
                   </li>
+                  <li><a class="dropdown-item" href="{{ formatPhoneNumberForWhatsApp($member->whatsapp) }}"><i
+                        class="bi bi-whatsapp me-2"></i>WhatsApp</a>
+                  </li>
                   <li><a class="dropdown-item" href="{{ route('customers.renewPlan', $member) }}"><i
                         class="bi bi-arrow-repeat me-2"></i>Renew
                       Plan</a>

@@ -138,10 +138,13 @@
           </div>
         </div>
       </li>
+      @php
+        $notifications = \App\Models\Notification::where('is_read', 0)->get();
+      @endphp
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" data-bs-auto-close="outside"
           data-bs-toggle="dropdown" href="javascript:;"><i class="material-icons-outlined">notifications</i>
-          <span class="badge-notify">5</span>
+          <span class="badge-notify">{{ $notifications->count() }}</span>
         </a>
         <div class="dropdown-menu dropdown-notify dropdown-menu-end shadow">
           <div class="px-3 py-1 d-flex align-items-center justify-content-between border-bottom">
@@ -154,30 +157,27 @@
                 </span>
               </button>
               <div class="dropdown-menu dropdown-option dropdown-menu-end shadow">
-                <div><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
+                <div><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#"><i
                       class="material-icons-outlined fs-6">done_all</i>Mark
                     all as read</a></div>
               </div>
             </div>
           </div>
           <div class="notify-list">
-            @for ($a=0;$a<3;$a++) <div>
-              <a class="dropdown-item border-bottom py-2 position-relative" href="javascript:;"
+            @foreach ($notifications as $notification) <div>
+              <a class="dropdown-item border-bottom py-2 position-relative" href="{{ route('notifications.show', $notification->id) }}"
                 style="white-space: normal">
                 <div class="d-flex align-items-center gap-3">
                   <div class="">
-                    <h5 class="notify-title">Nasir</h5>
-                    <p class="mb-0 notify-desc">Nasir's Subscription is ending in an hour.please Notify him.</p>
+                    <h5 class="notify-title">{{ $notification->title ?? 'Notification' }}</h5>
+                    <p class="mb-0 notify-desc">{{ $notification->description ?? '' }}</p>
                     <div class="d-flex align-items-center justify-content-end">
-                      <p class="mb-0 notify-time">23 March 2024 12:00 PM</p>
+                      <p class="mb-0 notify-time">{{ $notification->created_at->diffForHumans() }}</p>
                     </div>
-                  </div>
-                  <div class="notify-close position-absolute  me-3" style="top: 8px;right:-7px">
-                    <i class="material-icons-outlined fs-6">close</i>
                   </div>
                 </div>
               </a>
-              @endfor
+              @endforeach
               <div class="text-center mt-4">
                 <a href="#" class="text-white btn btn-secondary">See all Notifications</a>
               </div>

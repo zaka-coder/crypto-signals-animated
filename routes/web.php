@@ -52,7 +52,10 @@ Route::middleware(['auth'])->group(function () {
   Route::get('customers/{customer}/renew-plan', [CustomerController::class, 'renewPlan'])->name('customers.renewPlan');
   Route::post('customers/{customer}/renew-plan/store', [CustomerController::class, 'renewPlanStore'])->name('customers.renewPlanStore');
 
-  Route::post('notifications/{notification}', [NotificationController::class, 'show'])->name('notifications.show');
+  Route::get('notifications', [NotificationController::class, 'index'])->name('notifications.index');
+  Route::get('notifications/{notification}', [NotificationController::class, 'show'])->name('notifications.show');
+  
+
 
 
 });

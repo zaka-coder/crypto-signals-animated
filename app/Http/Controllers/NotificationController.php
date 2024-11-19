@@ -9,8 +9,10 @@ class NotificationController extends Controller
 {
   public function index()
   {
-
+    $notifications = Notification::all();
+    return view('admin.notifications.index', get_defined_vars());
   }
+
   public function create()
   {
 
@@ -29,10 +31,19 @@ class NotificationController extends Controller
   }
   public function show(Notification $notification)
   {
-    dd($notification);
+    // dd($notification);
+    $notification->is_read = true;
+    $notification->save();
+    return redirect()->route('customers.show', $notification->customer_id);
   }
   public function destroy($id)
   {
 
+  }
+
+  public function markAllAsRead()
+  {
+    Notification::where('is_read', false)->update(['is_read' => true]);
+    return redirect()->back();
   }
 }
