@@ -111,141 +111,30 @@
           data-bs-toggle="dropdown" href="javascript:;"><i class="material-icons-outlined">apps</i></a>
         <div class="dropdown-menu dropdown-menu-end dropdown-apps shadow-lg p-3">
           <div class="border rounded-4 overflow-hidden">
-            <div class="row row-cols-3 g-0 border-bottom">
+            <div class="row row-cols-12 g-0 border-bottom">
               <div class="col border-end">
                 <div class="app-wrapper d-flex flex-column gap-2 text-center">
-                  <div class="app-icon">
-                    <img src="assets/images/apps/01.png" width="36" alt="">
-                  </div>
                   <div class="app-name">
-                    <p class="mb-0">Gmail</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col border-end">
-                <div class="app-wrapper d-flex flex-column gap-2 text-center">
-                  <div class="app-icon">
-                    <img src="assets/images/apps/02.png" width="36" alt="">
-                  </div>
-                  <div class="app-name">
-                    <p class="mb-0">Skype</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="app-wrapper d-flex flex-column gap-2 text-center">
-                  <div class="app-icon">
-                    <img src="assets/images/apps/03.png" width="36" alt="">
-                  </div>
-                  <div class="app-name">
-                    <p class="mb-0">Slack</p>
+                    <a href="{{ route('customers.create') }}" class="text-white">
+                      <p class="mb-0">Add a Member</p>
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
             <!--end row-->
 
-            <div class="row row-cols-3 g-0 border-bottom">
+            <div class="row row-cols-12 g-0 border-bottom">
               <div class="col border-end">
                 <div class="app-wrapper d-flex flex-column gap-2 text-center">
-                  <div class="app-icon">
-                    <img src="assets/images/apps/04.png" width="36" alt="">
-                  </div>
                   <div class="app-name">
-                    <p class="mb-0">YouTube</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col border-end">
-                <div class="app-wrapper d-flex flex-column gap-2 text-center">
-                  <div class="app-icon">
-                    <img src="assets/images/apps/05.png" width="36" alt="">
-                  </div>
-                  <div class="app-name">
-                    <p class="mb-0">Google</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="app-wrapper d-flex flex-column gap-2 text-center">
-                  <div class="app-icon">
-                    <img src="assets/images/apps/06.png" width="36" alt="">
-                  </div>
-                  <div class="app-name">
-                    <p class="mb-0">Instagram</p>
+                    <a href="/expired-members" class="text-white">
+                      <p class="mb-0">Expired Members</p>
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
-            <!--end row-->
-
-            <div class="row row-cols-3 g-0 border-bottom">
-              <div class="col border-end">
-                <div class="app-wrapper d-flex flex-column gap-2 text-center">
-                  <div class="app-icon">
-                    <img src="assets/images/apps/07.png" width="36" alt="">
-                  </div>
-                  <div class="app-name">
-                    <p class="mb-0">Spotify</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col border-end">
-                <div class="app-wrapper d-flex flex-column gap-2 text-center">
-                  <div class="app-icon">
-                    <img src="assets/images/apps/08.png" width="36" alt="">
-                  </div>
-                  <div class="app-name">
-                    <p class="mb-0">Yahoo</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="app-wrapper d-flex flex-column gap-2 text-center">
-                  <div class="app-icon">
-                    <img src="assets/images/apps/09.png" width="36" alt="">
-                  </div>
-                  <div class="app-name">
-                    <p class="mb-0">Facebook</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--end row-->
-
-            <div class="row row-cols-3 g-0">
-              <div class="col border-end">
-                <div class="app-wrapper d-flex flex-column gap-2 text-center">
-                  <div class="app-icon">
-                    <img src="assets/images/apps/10.png" width="36" alt="">
-                  </div>
-                  <div class="app-name">
-                    <p class="mb-0">Figma</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col border-end">
-                <div class="app-wrapper d-flex flex-column gap-2 text-center">
-                  <div class="app-icon">
-                    <img src="assets/images/apps/11.png" width="36" alt="">
-                  </div>
-                  <div class="app-name">
-                    <p class="mb-0">Paypal</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="app-wrapper d-flex flex-column gap-2 text-center">
-                  <div class="app-icon">
-                    <img src="assets/images/apps/12.png" width="36" alt="">
-                  </div>
-                  <div class="app-name">
-                    <p class="mb-0">Photo</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--end row-->
           </div>
         </div>
       </li>
@@ -272,45 +161,53 @@
             </div>
           </div>
           <div class="notify-list">
-            @foreach ($notifications as $notification)
-            <div>
-              <a class="dropdown-item border-bottom py-2" href="{{ route('notifications.show', $notification) }}">
+            @for ($a=0;$a<3;$a++) <div>
+              <a class="dropdown-item border-bottom py-2 position-relative" href="javascript:;"
+                style="white-space: normal">
                 <div class="d-flex align-items-center gap-3">
                   <div class="">
-                    <h5 class="notify-title">{{ $notification->customer->discord_username }}</h5>
-                    <p class="mb-0 notify-desc">{{ $notification->title  }}</p>
-                    <p class="mb-0 notify-time">Today</p>
+                    <h5 class="notify-title">Nasir</h5>
+                    <p class="mb-0 notify-desc">Nasir's Subscription is ending in an hour.please Notify him.</p>
+                    <div class="d-flex align-items-center justify-content-end">
+                      <p class="mb-0 notify-time">23 March 2024 12:00 PM</p>
+                    </div>
                   </div>
-                  <div class="notify-close position-absolute end-0 me-3">
+                  <div class="notify-close position-absolute  me-3" style="top: 8px;right:-7px">
                     <i class="material-icons-outlined fs-6">close</i>
                   </div>
                 </div>
               </a>
-            </div>
-            @endforeach
+              @endfor
+              <div class="text-center mt-4">
+                <a href="#" class="text-white btn btn-secondary">See all Notifications</a>
+              </div>
           </div>
+        </div>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
-          <img src="{{theme('assets/images/avatars/02.png')}}" class="rounded-circle p-1 border" width="45" height="45"
+          <img src="{{theme('assets/images/user.png')}}" class="rounded-circle p-1 border" width="45" height="45"
             alt="">
         </a>
         <div class="dropdown-menu dropdown-user dropdown-menu-end shadow">
           <div class="gap-2 py-2">
             <div class="text-center">
-              <img src="{{theme('assets/images/avatars/02.png')}}" class="rounded-circle p-1 shadow mb-3" width="90"
+              <img src="{{theme('assets/images/user.png')}}" class="rounded-circle p-1 shadow mb-3" width="90"
                 height="90" alt="">
-              <h5 class="user-name mb-0 fw-bold">Hello,Haris</h5>
+              <h5 class="user-name mb-0 fw-bold">Hello,M.Haris</h5>
             </div>
           </div>
           <hr class="dropdown-divider">
-          <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;" onclick="document.getElementById('logout-form').submit();"><i
+          <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#"><i
+              class="material-icons-outlined">edit</i>Edit Profile</a>
+          <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"
+            onclick="document.getElementById('logout-form').submit();"><i
               class="material-icons-outlined">power_settings_new</i>Logout</a>
 
-              <form action="{{ route('logout') }}" method="POST" class="d-none" id="logout-form">
-                @csrf
-              </form>
+          <form action="{{ route('logout') }}" method="POST" class="d-none" id="logout-form">
+            @csrf
+          </form>
         </div>
       </li>
     </ul>

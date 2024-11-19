@@ -13,10 +13,6 @@
   <link rel="stylesheet" href="{{landingTheme('assets/css/plugins/animate.min.css')}}">
   <link rel="stylesheet" href="{{landingTheme('assets/css/vendor/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{landingTheme('assets/css/style.css')}}">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
-    integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="inner-page contact-page">
@@ -25,7 +21,7 @@
   <header class="header-area header-one header--sticky">
     <div class="header-container-one">
       <div class="header-wrapper">
-        <a href="/" class="logo">
+        <a href="index.html" class="logo">
           <img src="{{landingTheme('assets/images/logo/logo.png')}}" alt="logo" />
         </a>
         <div class="header-right">
@@ -201,7 +197,7 @@
 
 
   <!-- appoinment area two start -->
-  <div class="appoinmnet-area-two rts-section-gap p-2 py-5 p-md-5 ">
+  <div class="appoinmnet-area-two rts-section-gap p-5">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -414,11 +410,7 @@
   <script defer src="{{landingTheme('assets/js/vendor/waw.js')}}"></script>
   <!-- custom javascripts -->
   <script defer src="{{landingTheme('assets/js/main.js')}}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Scripts style two End -->
-  @stack('scripts')
 </body>
 
 </html>

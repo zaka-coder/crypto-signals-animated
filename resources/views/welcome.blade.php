@@ -5,7 +5,7 @@
 
 
 <!-- rts banenr area start -->
-<div class="banner-area banner-style-one banner-bg-1 hero__area-3 banner__jump">
+<div class="banner-area banner-style-one banner-bg-1 hero__area-3 banner__jump" id="home">
   <div class="shape-image">
     <img src="{{landingTheme('assets/images/banner/06.png')}}" alt="banner" />
   </div>
@@ -396,7 +396,7 @@
         </div>
       </div>
     </div>
-    <div class="row g-5">
+    <div class="row g-5" id="pricingPlans">
       <div class="col-lg-4 col-md-12 col-sm-12 col-12">
         <div class="pricing-left-area">
           <div class="title-area">

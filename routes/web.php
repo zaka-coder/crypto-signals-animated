@@ -56,3 +56,6 @@ Route::middleware(['auth'])->group(function () {
 
 
 });
+Route::get('/checking', function () {
+  return view('auth.checking');
+});

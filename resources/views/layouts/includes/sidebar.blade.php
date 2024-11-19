@@ -23,7 +23,7 @@
       </li>
       <li class="menu-label">Actions</li>
       <li>
-        <a type="button" class="has-arrow">
+        <a type="button">
           <div class="parent-icon"><i class="material-icons-outlined">group</i>
           </div>
           <div class="menu-title">Member Controls</div>
@@ -43,7 +43,7 @@
       </li>
       <li class="menu-label">General</li>
       <li>
-        <a class="has-arrow" href="javascript:;">
+        <a  href="javascript:;">
           <div class="parent-icon"><i class="material-icons-outlined">category</i>
           </div>
           <div class="menu-title">Categories</div>
@@ -68,15 +68,6 @@
           <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Free</a>
           </li> --}}
         </ul>
-      </li>
-      <li class="menu-label">Settings</li>
-
-      <li>
-        <a href="#">
-          <div class="parent-icon"><i class="material-icons-outlined">settings</i>
-          </div>
-          <div class="menu-title">Settings</div>
-        </a>
       </li>
     </ul>
     <!--end navigation-->
