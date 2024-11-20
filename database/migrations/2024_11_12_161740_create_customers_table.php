@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
             $table->string('discord_username');
-            $table->string('whatsapp');
+            $table->string('whatsapp')->nullable();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->decimal('price', 8, 2)->default(0.00);
             $table->timestamp('starts_at')->nullable();

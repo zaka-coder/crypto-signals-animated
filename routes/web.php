@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +18,7 @@ Route::get('/', function () {
 });
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
   Route::resource('customers', CustomerController::class);
 
 
@@ -26,7 +27,6 @@ Route::middleware(['auth'])->group(function () {
   // });
 
   Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-
 
   Route::get('/blocked-members', function () {
     $customers = \App\Models\Customer::where('is_blocked', true)->get();
@@ -61,6 +61,16 @@ Route::middleware(['auth'])->group(function () {
 
 
 });
+
+Route::middleware(['auth', 'dev'])->group(function () {
+  Route::get('/uploadspreadsheet', function () {
+    return view('admin.uploadxlsx');
+  });
+
+  Route::post('customers/import', [ImportController::class, 'store'])->name('customers.import');
+});
 Route::get('/checking', function () {
   return view('auth.checking');
 });
+
+

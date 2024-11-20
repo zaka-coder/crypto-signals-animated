@@ -16,12 +16,8 @@ class DatabaseSeeder extends Seeder
     // call other seeders here
     $this->call([
       CategoriesSeeder::class,
+      UserSeeder::class,
     ]);
 
-    User::create([
-      'name' => 'Admin',
-      'email' => 'admin@gmail.com',
-      'password' => bcrypt('admin123'),
-    ]);
   }
 }
