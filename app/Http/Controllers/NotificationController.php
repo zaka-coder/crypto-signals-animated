@@ -9,7 +9,7 @@ class NotificationController extends Controller
 {
   public function index()
   {
-    $notifications = Notification::all();
+    $notifications = Notification::orderBy('created_at', 'desc')->get();
     return view('admin.notifications.index', get_defined_vars());
   }
 
@@ -36,14 +36,15 @@ class NotificationController extends Controller
     $notification->save();
     return redirect()->route('customers.show', $notification->customer_id);
   }
-  public function destroy($id)
+  public function destroy(Notification $notification)
   {
-
+    $notification->delete();
+    return redirect()->back()->with('success', 'Notification deleted successfully.');
   }
 
-  public function markAllAsRead()
+  public function readAll()
   {
     Notification::where('is_read', false)->update(['is_read' => true]);
-    return redirect()->back();
+    return redirect()->back()->with('success', 'All notifications marked as read.');
   }
 }

@@ -12,4 +12,9 @@ class Notification extends Model
     'is_read' => 'boolean',
   ];
 
+  public function customer()
+  {
+    return $this->belongsTo(Customer::class);
+  }
+
 }

@@ -54,7 +54,9 @@ Route::middleware(['auth'])->group(function () {
 
   Route::get('notifications', [NotificationController::class, 'index'])->name('notifications.index');
   Route::get('notifications/{notification}', [NotificationController::class, 'show'])->name('notifications.show');
-  
+  Route::delete('notifications/{notification}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+  Route::post('notifications/read-all', [NotificationController::class, 'readAll'])->name('notifications.readAll');
+
 
 
 

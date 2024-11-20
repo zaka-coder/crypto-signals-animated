@@ -235,6 +235,13 @@
         document.getElementById('delete-form-' + id).submit();
       }
     }
+
+    function deleteRecord(id) {
+      if (confirm('Are you sure you want to delete this record?')) {
+        document.getElementById('delete-form-' + id).submit();
+      }
+    }
+
   </script>
   @stack('scripts')
 </body>
