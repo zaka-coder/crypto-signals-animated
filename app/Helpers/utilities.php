@@ -18,11 +18,16 @@ if (!function_exists('formatPhoneNumberForWhatsApp')) {
   /**
    * Format a phone number into WhatsApp-compatible international format.
    *
-   * @param string $phoneNumber
+   * @param string|null $phoneNumber
    * @return string
    */
-  function formatPhoneNumberForWhatsApp(string $phoneNumber): string
+  function formatPhoneNumberForWhatsApp(?string $phoneNumber): string
   {
+      // If the phone number is null or empty, return an empty string or a default value
+      if (empty($phoneNumber)) {
+          return ''; // or you could return a default message, e.g., 'Not Available'
+      }
+
       $countryCodeMap = [
           '03' => '+92', // Pakistan
           '91' => '+91', // India
@@ -56,4 +61,5 @@ if (!function_exists('formatPhoneNumberForWhatsApp')) {
       return 'https://wa.me/' . ltrim($formattedNumber, '+');
   }
 }
+
 

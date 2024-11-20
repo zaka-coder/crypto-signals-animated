@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -37,5 +38,7 @@ class CategoriesSeeder extends Seeder
             'name' => 'Free',
             'price' => 0.00
         ]);
+
+
     }
 }

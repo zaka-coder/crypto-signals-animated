@@ -39,8 +39,10 @@
 
           <div class="w-100 mb-5">
             <div class="d-flex justify-content-center gap-3 w-100">
-              <a href="{{ formatPhoneNumberForWhatsApp($customer->whatsapp) }}" target="_blank" class="btn btn-success"><i
-                  class="bi bi-whatsapp"></i> Whatsapp</a>
+              @if ($customer->whatsapp && $customer->whatsapp != '')
+                <a href="{{ formatPhoneNumberForWhatsApp($customer->whatsapp) }}" target="_blank"
+                  class="btn btn-success"><i class="bi bi-whatsapp"></i> Whatsapp</a>
+              @endif
               <a href="{{ route('customers.renewPlan', $customer) }}" class="btn btn-outline-primary"><i
                   class="bi bi-arrow-repeat"></i> Renew</a>
             </div>
