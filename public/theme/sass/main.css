@@ -266,7 +266,10 @@ input::placeholder {
 }
 .top-header .navbar .nav-item .dropdown-notify .notify-list {
   position: relative;
-  height: 390px;
+  height: auto;
+  overflow: auto;
+  max-height: 350px;
+  padding: 0px 0px 15px;
 }
 .top-header
   .navbar
@@ -1628,6 +1631,9 @@ form select.error:focus {
   background-color: white;
   border-radius: 120px;
 }
+.table-responsive {
+  min-height: 400px;
+}
 .active > .page-link {
   background-color: #0a0f2b;
   border-color: #0a0f2b;
@@ -1685,4 +1691,10 @@ form select.error:focus {
   [data-cell="Actions"] .d-flex {
     padding-block-start: 0.5rem;
   }
+}
+.red-text > * {
+  color: red !important;
+}
+.yellow-text > * {
+  color: yellow !important;
 }

@@ -55,8 +55,8 @@ All Members
           );
           }
           @endphp
-          <tr class="@if ( $remainingDays && $remainingDays <= 2) bg-danger
-              @elseif ( $remainingDays && $remainingDays > 2 && $remainingDays <= 10 ) bg-warning
+          <tr class="@if ( $remainingDays && $remainingDays <= 2) red-text
+              @elseif ( $remainingDays && $remainingDays > 2 && $remainingDays <= 10 ) yellow-text
                @endif">
             <td data-cell="Sr.No" class="align-middle  " style="text-align: center">{{ $loop->iteration }}</td>
             <td data-cell="Member Name" class="align-middle  " style="text-align: center">{{ $member->name ?? '' }}</td>

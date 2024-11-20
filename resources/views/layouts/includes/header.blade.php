@@ -1,28 +1,30 @@
 @php
-  $notifications = \App\Models\Notification::where('is_read', 0)->get();
+$notifications = \App\Models\Notification::where('is_read', 0)->get();
 @endphp
 
 <!-- Notifications Modal -->
-<div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+<div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content shadow">
       <div class="modal-header border-bottom">
         <h5 class="modal-title" id="notificationsModalLabel">Alerts</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          style="filter:invert(1)"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body p-0">
         <div class="notify-list">
           @foreach ($notifications as $notification)
-            <div class="border-bottom py-2">
-              <a class="d-block text-decoration-none" href="{{ route('notifications.show', $notification->id) }}"
-                style="white-space: normal">
-                <h5 class="notify-title">{{ $notification->title ?? 'Notification' }}</h5>
-                <p class="mb-0 notify-desc">{{ $notification->description ?? '' }}</p>
-                <div class="d-flex align-items-center justify-content-end">
-                  <p class="mb-0 notify-time">{{ $notification->created_at->diffForHumans() }}</p>
-                </div>
-              </a>
-            </div>
+          <div class="border-bottom  p-3">
+            <a class="d-block text-decoration-none" href="{{ route('notifications.show', $notification->id) }}"
+              style="white-space: normal">
+              <h5 class="notify-title text-danger">{{ $notification->title ?? 'Notification' }}</h5>
+              <p class="mb-0 notify-desc text-white">{{ $notification->description ?? '' }}</p>
+              <div class="d-flex align-items-center justify-content-end">
+                <p class="mb-0 notify-time text-white opacity-50">{{ $notification->created_at->diffForHumans() }}</p>
+              </div>
+            </a>
+          </div>
           @endforeach
 
         </div>
@@ -31,7 +33,8 @@
         <div class="d-flex align-items-center justify-content-between w-100">
           <a href="{{ route('notifications.index') }}" class="text-white btn btn-secondary">See all
             Notifications</a>
-          <button type="button" class="btn btn-secondary" onclick="document.getElementById('readAllForm').submit();">Mark
+          <button type="button" class="btn btn-secondary"
+            onclick="document.getElementById('readAllForm').submit();">Mark
             all as read</button>
           <!-- Hidden Form -->
           <form id="readAllForm" action="{{ route('notifications.readAll') }}" method="POST" class="d-none">
@@ -116,8 +119,7 @@
               <div class="search-list d-flex flex-column gap-2">
                 <div class="search-list-item d-flex align-items-center gap-3">
                   <div class="memmber-img">
-                    <img src="assets/images/avatars/01.png" width="32" height="32" class="rounded-circle"
-                      alt="">
+                    <img src="assets/images/avatars/01.png" width="32" height="32" class="rounded-circle" alt="">
                   </div>
                   <div class="">
                     <h5 class="mb-0 search-list-title ">Andrew Stark</h5>
@@ -126,8 +128,7 @@
 
                 <div class="search-list-item d-flex align-items-center gap-3">
                   <div class="memmber-img">
-                    <img src="assets/images/avatars/02.png" width="32" height="32" class="rounded-circle"
-                      alt="">
+                    <img src="assets/images/avatars/02.png" width="32" height="32" class="rounded-circle" alt="">
                   </div>
                   <div class="">
                     <h5 class="mb-0 search-list-title ">Snetro Jhonia</h5>
@@ -136,8 +137,7 @@
 
                 <div class="search-list-item d-flex align-items-center gap-3">
                   <div class="memmber-img">
-                    <img src="assets/images/avatars/03.png" width="32" height="32" class="rounded-circle"
-                      alt="">
+                    <img src="assets/images/avatars/03.png" width="32" height="32" class="rounded-circle" alt="">
                   </div>
                   <div class="">
                     <h5 class="mb-0 search-list-title">Michle Clark</h5>
@@ -218,32 +218,32 @@
           </div>
           <div class="notify-list">
             @foreach ($notifications as $notification)
-              <div>
-                <a class="dropdown-item border-bottom py-2 position-relative"
-                  href="{{ route('notifications.show', $notification->id) }}" style="white-space: normal">
-                  <div class="d-flex align-items-center gap-3">
-                    <div class="">
-                      <h5 class="notify-title">{{ $notification->title ?? 'Notification' }}</h5>
-                      <p class="mb-0 notify-desc">{{ $notification->description ?? '' }}</p>
-                      <div class="d-flex align-items-center justify-content-end">
-                        <p class="mb-0 notify-time">{{ $notification->created_at->diffForHumans() }}</p>
-                      </div>
+            <div>
+              <a class="dropdown-item border-bottom py-2 position-relative"
+                href="{{ route('notifications.show', $notification->id) }}" style="white-space: normal">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="">
+                    <h5 class="notify-title">{{ $notification->title ?? 'Notification' }}</h5>
+                    <p class="mb-0 notify-desc">{{ $notification->description ?? '' }}</p>
+                    <div class="d-flex align-items-center justify-content-end">
+                      <p class="mb-0 notify-time">{{ $notification->created_at->diffForHumans() }}</p>
                     </div>
                   </div>
-                </a>
-            @endforeach
-            <div class="text-center mt-4">
-              <a href="{{ route('notifications.index') }}" class="text-white btn btn-secondary">See all
-                Notifications</a>
+                </div>
+              </a>
+              @endforeach
+              <div class="text-center mt-4">
+                <a href="{{ route('notifications.index') }}" class="text-white btn btn-secondary">See all
+                  Notifications</a>
+              </div>
             </div>
           </div>
-        </div>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
-          <img src="{{ theme('assets/images/user.png') }}" class="rounded-circle p-1 border" width="45"
-            height="45" alt="">
+          <img src="{{ theme('assets/images/user.png') }}" class="rounded-circle p-1 border" width="45" height="45"
+            alt="">
         </a>
         <div class="dropdown-menu dropdown-user dropdown-menu-end shadow">
           <div class="gap-2 py-2">
@@ -272,8 +272,8 @@
 <!--end top header-->
 
 @push('scripts')
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
       const currentRoute = "{{ Route::currentRouteName() }}";
       const notificationCount = {{ $notifications->count() }};
       if (currentRoute === "dashboard" && notificationCount > 0) {
@@ -285,5 +285,5 @@
       const modal = new bootstrap.Modal(document.getElementById('notificationsModal'));
       modal.show();
     }
-  </script>
+</script>
 @endpush
