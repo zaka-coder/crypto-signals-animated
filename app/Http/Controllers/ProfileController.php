@@ -15,22 +15,11 @@ class ProfileController extends Controller
   public function update(Request $request)
   {
     $request->validate([
-      'name'=> 'required',
-      'email' => 'required|email|unique:users,email,' . auth()->user()->id .',id',
-      'old_password' => 'required_with:password',
-      'password' => 'nullable|confirmed|min:8',
+      'name' => 'required',
+      'email' => 'required|email|unique:users,email,' . auth()->user()->id . ',id',
     ]);
 
     $user = auth()->user();
-
-    if($request->password) {
-      if (!\Hash::check($request->old_password, $user->password)) {
-        return back()->withErrors(['old_password' => 'The provided password was incorrect.']);
-      }
-
-      $user->password = bcrypt($request->password);
-    }
-
     $user->name = $request->name;
     $user->email = $request->email;
     $user->save();
@@ -38,4 +27,23 @@ class ProfileController extends Controller
     return back()->with('success', 'Profile updated successfully.');
   }
 
+  public function updatePassword(Request $request)
+  {
+    $request->validate([
+      'old_password' => 'required',
+      'password' => 'required|confirmed|min:8',
+    ]);
+
+    $user = auth()->user();
+
+
+    if (!\Hash::check($request->old_password, $user->password)) {
+      return back()->withErrors(['old_password' => 'The provided password was incorrect.']);
+    }
+
+    $user->password = bcrypt($request->password);
+    $user->save();
+
+    return back()->with('success', 'Password updated successfully.');
+  }
 }
