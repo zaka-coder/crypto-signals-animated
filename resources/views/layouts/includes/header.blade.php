@@ -254,7 +254,7 @@ $notifications = \App\Models\Notification::where('is_read', 0)->get();
             </div>
           </div>
           <hr class="dropdown-divider">
-          <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#"><i
+          <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ route('profile.edit') }}"><i
               class="material-icons-outlined">edit</i>Edit Profile</a>
           <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"
             onclick="document.getElementById('logout-form').submit();"><i

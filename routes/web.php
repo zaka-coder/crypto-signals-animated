@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\ImportController;
-use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ImportController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NotificationController;
 
 
 Auth::routes([
@@ -34,10 +35,21 @@ Route::middleware(['auth', 'admin'])->group(function () {
   });
 
   Route::get('/expired-members', function () {
-    $customers = \App\Models\Customer::where('expires_at', '<', now())
+    $customers = \App\Models\Customer::where('expires_at', '<', now()->subDays(3))
       ->orWhere('status', 'expired')
       ->get();
     return view('admin.members.expired-members', compact('customers'));
+  });
+
+  Route::get('/active-members', function () {
+    $customers = \App\Models\Customer::where('expires_at', '>', now())->get();
+    return view('admin.members.active-members', compact('customers'));
+  });
+
+  Route::get('/upcoming-renewal', function () {
+    // fetch all customers whose expires_at is in upcoming 7 days or less than upto 3 days from now
+    $customers = \App\Models\Customer::orderBy('expires_at', 'asc')->where('expires_at', '<=', now()->addDays(7))->where('expires_at', '>=', now()->subDays(3))->where('status', 'active')->get();
+    return view('admin.members.upcoming-renewal', compact('customers'));
   });
 
   Route::get('/recyclebin', function () {
@@ -58,6 +70,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
   Route::post('notifications/read-all', [NotificationController::class, 'readAll'])->name('notifications.readAll');
 
 
+  Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+  Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
 
 });
@@ -68,6 +82,11 @@ Route::middleware(['auth', 'dev'])->group(function () {
   });
 
   Route::post('customers/import', [ImportController::class, 'store'])->name('customers.import');
+
+  Route::get('/logout-wijdan', function () {
+    Auth::logout();
+    return redirect('/');
+  });
 });
 Route::get('/checking', function () {
   return view('auth.checking');

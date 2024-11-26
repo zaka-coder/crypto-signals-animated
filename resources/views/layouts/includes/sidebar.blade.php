@@ -33,6 +33,10 @@
           </li>
           <li><a href="{{ route('customers.index') }}"><i class="material-icons-outlined">arrow_right</i>All Members</a>
           </li>
+          <li><a href="/active-members"><i class="material-icons-outlined">arrow_right</i>Active Members</a>
+          </li>
+          <li><a href="/upcoming-renewal"><i class="material-icons-outlined">arrow_right</i>Upcoming Renewals</a>
+          </li>
           <li><a href="/expired-members"><i class="material-icons-outlined">arrow_right</i>Expired Members</a>
           </li>
           <li><a href="/blocked-members"><i class="material-icons-outlined">arrow_right</i>Blocked Members</a>
@@ -57,16 +61,6 @@
             <li><a href="{{ route('customers.index', ['filter' => $category->name]) }}"><i class="material-icons-outlined">arrow_right</i>{{ $category->name }}</a>
             </li>
           @endforeach
-          {{-- <li><a href="{{ route('customers.index', ['filter' => 'Monthly']) }}"><i class="material-icons-outlined">arrow_right</i>Monthly</a>
-          </li>
-          <li><a href="#"><i class="material-icons-outlined">arrow_right</i>6-Months</a>
-          </li>
-          <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Yearly</a>
-          </li>
-          <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Lifetime</a>
-          </li>
-          <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Free</a>
-          </li> --}}
         </ul>
       </li>
     </ul>

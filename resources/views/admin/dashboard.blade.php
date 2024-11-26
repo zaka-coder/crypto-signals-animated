@@ -19,14 +19,14 @@ Dashboard
             </div>
             <div class="d-flex align-items-center gap-5">
               <div class="">
-                <h4 class="mb-1 fw-semibold d-flex align-content-center">1200<i
+                <h4 class="mb-1 fw-semibold d-flex align-content-center">{{ $totalCustomers->count() }}<i
                     class="ti ti-arrow-up-right fs-5 lh-base text-success"></i>
                 </h4>
                 <p class="mb-3">Total Members</p>
               </div>
               <div class="vr"></div>
               <div class="">
-                <h4 class="mb-1 fw-semibold d-flex align-content-center">12<i
+                <h4 class="mb-1 fw-semibold d-flex align-content-center">{{ $expiringCustomers->count() }}<i
                     class="ti ti-arrow-up-right fs-5 lh-base text-success"></i>
                 </h4>
                 <p class="mb-3">Upcoming Renewels <i class="bi bi-info-circle" data-bs-toggle="tooltip"
@@ -50,56 +50,64 @@ Dashboard
       <div class="col-md-3 d-flex align-items-stretch">
         <div class="card w-100 rounded-4" style="height: 120px">
           <div class="card-body h-100">
+            <a href="{{ route('customers.index') }}">
             <div class="d-flex align-items-start justify-content-between mb-1" style="height: 30%">
               <div class="">
                 <h5 class="mb-0">Total Members</h5>
               </div>
             </div>
             <div class="d-flex align-items-end justify-content-end" style="height: 70%">
-              <h1 class="display-6 m-0 fw-bold text-success">220</h1>
+              <h1 class="display-6 m-0 fw-bold text-success">{{ $totalCustomers->count() }}</h1>
             </div>
+          </a>
           </div>
         </div>
       </div>
       <div class="col-md-3 d-flex align-items-stretch">
         <div class="card w-100 rounded-4" style="height: 120px">
           <div class="card-body h-100">
-            <div class="d-flex align-items-start justify-content-between mb-1" style="height: 30%">
-              <div class="">
-                <h5 class="mb-0">Active Members</h5>
+            <a href="/active-members">
+              <div class="d-flex align-items-start justify-content-between mb-1" style="height: 30%">
+                <div class="">
+                  <h5 class="mb-0">Active Members</h5>
+                </div>
               </div>
-            </div>
-            <div class="d-flex align-items-end justify-content-end" style="height: 70%">
-              <h1 class="display-6 m-0 fw-bold" style="color: #ff841b;">180</h1>
-            </div>
+              <div class="d-flex align-items-end justify-content-end" style="height: 70%">
+                <h1 class="display-6 m-0 fw-bold" style="color: #ff841b;">{{ $activeCustomers->count() }}</h1>
+              </div>
+            </a>
           </div>
         </div>
       </div>
       <div class="col-md-3 d-flex align-items-stretch">
         <div class="card w-100 rounded-4" style="height: 120px">
           <div class="card-body h-100">
+            <a href="/expired-members">
             <div class="d-flex align-items-start justify-content-between mb-1" style="height: 30%">
               <div class="">
                 <h5 class="mb-0">Expired Members</h5>
               </div>
             </div>
             <div class="d-flex align-items-end justify-content-end" style="height: 70%">
-              <h1 class="display-6 m-0 fw-bold text-danger">20</h1>
+              <h1 class="display-6 m-0 fw-bold text-danger">{{ $expiredCustomers->count() }}</h1>
             </div>
+            </a>
           </div>
         </div>
       </div>
       <div class="col-md-3 d-flex align-items-stretch">
         <div class="card w-100 rounded-4" style="height: 120px">
           <div class="card-body h-100">
+            <a href="/upcoming-renewal">
             <div class="d-flex align-items-start justify-content-between mb-1" style="height: 30%">
               <div class="">
                 <h5 class="mb-0">Upcoming Renewels</h5>
               </div>
             </div>
             <div class="d-flex align-items-end justify-content-end" style="height: 70%">
-              <h1 class="display-6 m-0 fw-bold text-info">18</h1>
+              <h1 class="display-6 m-0 fw-bold text-info">{{ $expiringCustomers->count() }}</h1>
             </div>
+            </a>
           </div>
         </div>
       </div>
