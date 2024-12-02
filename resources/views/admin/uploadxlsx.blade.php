@@ -1,29 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Import Data</title>
-</head>
-<body>
-
+@extends('layouts.master')
+@section('currentPage')
+Bulk Upload
+@endsection
+@section('content')
+<div class="min-vh-100 py-5">
   <form action="{{ route('customers.import') }}" method="post" enctype="multipart/form-data">
     @csrf
     <legend>Upload File</legend>
-    <input type="file" name="file" id="file"><br>
-    <button type="submit">Upload</button><br>
+    <input type="file" name="file" id="file" class="form-control"><br>
+    <button type="submit" class="btn btn-primary d-block w-100">Upload</button><br>
     @error('file')
-      <p>{{ $message }}</p>
+    <p>{{ $message }}</p>
     @enderror
 
     @if(session('success'))
-      <p>{{ session('success') }}</p>
+    <p>{{ session('success') }}</p>
     @endif
 
     @if(session('error'))
-      <p>{{ session('error') }}</p>
+    <p>{{ session('error') }}</p>
     @endif
   </form>
-</body>
-</html>
+</div>
+@endsection
