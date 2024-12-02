@@ -290,12 +290,13 @@ input::placeholder {
   font-size: 12px;
   color: #fff;
   border-radius: 4px;
-  width: 20px;
+  /* width: 20px; */
   height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f01414;
+  padding: 0 6px !important;
 }
 .top-header .navbar .dropdown-menu {
   border-radius: 1rem;
