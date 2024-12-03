@@ -43,26 +43,30 @@
           </li>
           <li><a href="/recyclebin"><i class="material-icons-outlined">arrow_right</i>Recycle Bin</a>
           </li>
+          <li><a href="/uploadspreadsheet"><i class="material-icons-outlined">arrow_right</i>Bulk Upload</a>
+          </li>
         </ul>
       </li>
       <li class="menu-label">General</li>
       <li>
-        <a  href="javascript:;">
+        <a href="javascript:;">
           <div class="parent-icon"><i class="material-icons-outlined">category</i>
           </div>
           <div class="menu-title">Categories</div>
         </a>
         <ul>
           @php
-            $categories = \App\Models\Category::all();
+          $categories = \App\Models\Category::all();
           @endphp
 
           @foreach ($categories as $category)
-            <li><a href="{{ route('customers.index', ['filter' => $category->name]) }}"><i class="material-icons-outlined">arrow_right</i>{{ $category->name }}</a>
-            </li>
+          <li><a href="{{ route('customers.index', ['filter' => $category->name]) }}"><i
+                class="material-icons-outlined">arrow_right</i>{{ $category->name }}</a>
+          </li>
           @endforeach
         </ul>
       </li>
+
     </ul>
     <!--end navigation-->
   </div>

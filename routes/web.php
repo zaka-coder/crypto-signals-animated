@@ -73,24 +73,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
   Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
   Route::put('/password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
-
-
-});
-
-Route::middleware(['auth', 'dev'])->group(function () {
   Route::get('/uploadspreadsheet', function () {
     return view('admin.uploadxlsx');
   });
-
   Route::post('customers/import', [ImportController::class, 'store'])->name('customers.import');
-
-  Route::get('/logout-wijdan', function () {
-    Auth::logout();
-    return redirect('/');
-  });
 });
+
+// Route::middleware(['auth', 'dev'])->group(function () {
+
+
+//   Route::get('/logout-wijdan', function () {
+//     Auth::logout();
+//     return redirect('/');
+//   });
+// });
 Route::get('/checking', function () {
   return view('auth.checking');
 });
-
-
