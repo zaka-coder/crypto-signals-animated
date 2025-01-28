@@ -26,7 +26,7 @@ Blocked Members
         </thead>
         <tbody>
           @foreach ($customers as $key => $member)
-          <tr>
+          <tr data-id="{{ $member->id }}">
             <td data-cell="Sr.No" class="align-middle " style="text-align: start">{{ ++$key }}</td>
             <td data-cell="Member Name" class="align-middle " style="text-align: start">{{ $member->name ?? '' }}</td>
             <td data-cell="Discord Username" class="align-middle " style="text-align: start">{{
@@ -60,20 +60,20 @@ Blocked Members
                   <li><a class="dropdown-item" href="{{ route('customers.show', $member) }}"><i
                         class="bi bi-person me-2"></i>Profile</a>
                   </li>
-                  <li><a class="dropdown-item" href="{{ route('customers.blockToggle', $member) }}"><i
+                  <li><a class="dropdown-item" href="javascript:;" onclick="toggleBlockMember({{ $member->id }}, this, 'blocked-members')"><i
                         class="bi bi-check2-circle me-2"></i>Unblock</a>
                   </li>
                   <li class="dropdown-divider"></li>
                   <li>
                     <a class="dropdown-item text-danger" href="javascript:;"
-                      onclick="deleteMember({{ $member->id }})"><i class="bi bi-trash-fill me-2"></i>Delete</a>
+                      onclick="deleteMember({{ $member->id }}, 'blocked-members')"><i class="bi bi-trash-fill me-2"></i>Delete</a>
 
                     {{-- Delete Form --}}
-                    <form id="delete-form-{{ $member->id }}" action="{{ route('customers.destroy', $member) }}"
+                    {{-- <form id="delete-form-{{ $member->id }}" action="{{ route('customers.destroy', $member) }}"
                       method="POST" class="d-none">
                       @csrf
                       @method('DELETE')
-                    </form>
+                    </form> --}}
                   </li>
                 </ul>
               </div>

@@ -314,21 +314,26 @@ class CustomerController extends Controller
     return view('admin.members.show', compact('customer'));
   }
 
-  public function destroy(Customer $customer)
+  public function destroy($id)
   {
+    $customer = Customer::findOrFail($id);
     $customer->delete();
-    return redirect()->route('customers.index')->with('success', 'Member deleted successfully!');
+    return response()->json(['success' => true, 'message' => 'Member deleted successfully!']);
   }
 
   public function restore($id)
   {
     $customer = Customer::onlyTrashed()->findOrFail($id);
     $customer->restore();
-    return redirect()->back()->with('success', 'Member restored successfully.');
+    return response()->json(['success' => true, 'message' => 'Member restored successfully.']);
+
+    // return redirect()->back()->with('success', 'Member restored successfully.');
   }
 
-  public function blockToggle(Customer $customer)
+  public function blockToggle($id)
   {
+    $customer = Customer::findOrFail($id);
+
     $customer->is_blocked = !$customer->is_blocked;
 
     if ($customer->is_blocked) {
@@ -339,6 +344,6 @@ class CustomerController extends Controller
 
     $customer->save();
 
-    return redirect()->back()->with('success', 'Member status updated successfully.');
+    return response()->json(['success' => true, 'message' => 'Member status updated successfully.']);
   }
 }

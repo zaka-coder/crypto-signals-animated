@@ -17,7 +17,7 @@
             <div class="btn-group w-100">
               <a href="{{ route('customers.edit', $customer) }}" class="btn btn-outline-success"><i
                   class="bi bi-pencil"></i> Edit</a>
-              <a href="{{ route('customers.blockToggle', $customer) }}" class="btn btn-outline-warning">
+              <a href="javascript:;" onclick="toggleBlockMember({{ $customer->id }}, this)" class="btn btn-outline-warning">
                 @if ($customer->is_blocked)
                   <i class="bi bi-check2-circle"></i> Unblock
                 @else
@@ -30,11 +30,11 @@
             </div>
 
             <!-- Delete Form -->
-            <form id="delete-form-{{ $customer->id }}" action="{{ route('customers.destroy', $customer) }}" method="POST"
+            {{-- <form id="delete-form-{{ $customer->id }}" action="{{ route('customers.destroy', $customer) }}" method="POST"
               class="d-none">
               @csrf
               @method('DELETE')
-            </form>
+            </form> --}}
           </div>
 
           <div class="w-100 mb-5">

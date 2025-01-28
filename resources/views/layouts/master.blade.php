@@ -6,29 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Crypto Signals</title>
   <!--favicon-->
-  <link rel="icon" href="{{theme('assets/images/favicon-32x32.png')}}" type="image/png">
+  <link rel="icon" href="{{ theme('assets/images/favicon-32x32.png') }}" type="image/png">
   <!-- loader-->
-  <link href="{{theme('assets/css/pace.min.css')}}" rel="stylesheet">
-  <script src="{{theme('assets/js/pace.min.js')}}"></script>
+  <link href="{{ theme('assets/css/pace.min.css') }}" rel="stylesheet">
+  <script src="{{ theme('assets/js/pace.min.js') }}"></script>
 
   <!--plugins-->
-  <link href="{{theme('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="{{theme('assets/plugins/metismenu/metisMenu.min.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{theme('assets/plugins/metismenu/mm-vertical.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{theme('assets/plugins/simplebar/css/simplebar.css')}}">
-  <link href="{{theme('assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+  <link href="{{ theme('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ theme('assets/plugins/metismenu/metisMenu.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ theme('assets/plugins/metismenu/mm-vertical.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ theme('assets/plugins/simplebar/css/simplebar.css') }}">
+  <link href="{{ theme('assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
   <!--bootstrap css-->
-  <link href="{{theme('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{ theme('assets/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
   <!--main css-->
-  <link href="{{theme('assets/css/bootstrap-extended.css')}}" rel="stylesheet">
-  <link href="{{theme('sass/main.css')}}" rel="stylesheet">
-  <link href="{{theme('sass/dark-theme.css')}}" rel="stylesheet">
-  <link href="{{theme('sass/blue-theme.css')}}" rel="stylesheet">
-  <link href="{{theme('sass/semi-dark.css')}}" rel="stylesheet">
-  <link href="{{theme('sass/bordered-theme.css')}}" rel="stylesheet">
-  <link href="{{theme('sass/responsive.css')}}" rel="stylesheet">
+  <link href="{{ theme('assets/css/bootstrap-extended.css') }}" rel="stylesheet">
+  <link href="{{ theme('sass/main.css') }}" rel="stylesheet">
+  <link href="{{ theme('sass/dark-theme.css') }}" rel="stylesheet">
+  <link href="{{ theme('sass/blue-theme.css') }}" rel="stylesheet">
+  <link href="{{ theme('sass/semi-dark.css') }}" rel="stylesheet">
+  <link href="{{ theme('sass/bordered-theme.css') }}" rel="stylesheet">
+  <link href="{{ theme('sass/responsive.css') }}" rel="stylesheet">
   @yield('css')
 </head>
 
@@ -45,7 +45,7 @@
       <!--breadcrumb-->
       <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
         @if (Request::is('/'))
-        <div class="breadcrumb-title pe-3">Dashboard</div>
+          <div class="breadcrumb-title pe-3">Dashboard</div>
         @endif
         <div class="ps-3">
           <nav aria-label="breadcrumb">
@@ -205,43 +205,103 @@
   <!--end cart-->
 
   <!--bootstrap js-->
-  <script src="{{theme('assets/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ theme('assets/js/bootstrap.bundle.min.js') }}"></script>
 
   <!--plugins-->
-  <script src="{{theme('assets/js/jquery.min.js')}}"></script>
+  <script src="{{ theme('assets/js/jquery.min.js') }}"></script>
   <!--plugins-->
-  <script src="{{theme('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
-  <script src="{{theme('assets/plugins/metismenu/metisMenu.min.js')}}"></script>
-  <script src="{{theme('assets/plugins/apexchart/apexcharts.min.js')}}"></script>
-  <script src="{{theme('assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
-  <script src="{{theme('assets/plugins/peity/jquery.peity.min.js')}}"></script>
-  <script src="{{theme('assets/js/jquery.min.js')}}"></script>
-  <script src="{{theme('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-  <script src="{{theme('assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+  <script src="{{ theme('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
+  <script src="{{ theme('assets/plugins/metismenu/metisMenu.min.js') }}"></script>
+  <script src="{{ theme('assets/plugins/apexchart/apexcharts.min.js') }}"></script>
+  <script src="{{ theme('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
+  <script src="{{ theme('assets/plugins/peity/jquery.peity.min.js') }}"></script>
+  <script src="{{ theme('assets/js/jquery.min.js') }}"></script>
+  <script src="{{ theme('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ theme('assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
 
   <script>
     $(".data-attributes span").peity("donut");
   </script>
   <script>
-    $(function () {
-    $('[data-bs-toggle="tooltip"]').tooltip();
-      })
+    $(function() {
+      $('[data-bs-toggle="tooltip"]').tooltip();
+    })
   </script>
-  <script src="{{theme('assets/js/dashboard2.js')}}"></script>
-  <script src="{{theme('assets/js/main.js')}}"></script>
+  <script src="{{ theme('assets/js/dashboard2.js') }}"></script>
+  <script src="{{ theme('assets/js/main.js') }}"></script>
   <script>
-    function deleteMember(id) {
-      if (confirm('Are you sure you want to delete this member?')) {
-        document.getElementById('delete-form-' + id).submit();
-      }
-    }
-
     function deleteRecord(id) {
       if (confirm('Are you sure you want to delete this record?')) {
         document.getElementById('delete-form-' + id).submit();
       }
     }
 
+    // function deleteMember(id) {
+    //   if (confirm('Are you sure you want to delete this member?')) {
+    //     document.getElementById('delete-form-' + id).submit();
+    //   }
+    // }
+
+    function deleteMember(memberId, tableId = null) {
+      if (confirm('Are you sure you want to delete this member?')) {
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+          }
+        })
+        $.ajax({
+          url: `/customers/${memberId}`,
+          type: 'DELETE',
+          success: function(response) {
+            if (response.success) {
+              console.log(response.message);
+              if (tableId) {
+                // Use DataTables API to remove the row
+                let table = $(`#${tableId}`).DataTable();
+                let row = table.row($(`#${tableId} tbody tr[data-id="${memberId}"]`));
+                row.remove().draw(); // Removes the row and redraws the table
+              } else {
+                // goto the all members page
+                window.location.href = '/customers';
+              }
+            } else {
+              alert('Error: Unable to delete member.');
+            }
+          },
+          error: function() {
+            alert('Error: Could not process request.');
+          }
+        });
+      }
+    }
+
+    function toggleBlockMember(memberId, button, tableId = null) {
+      let url = "{{ url('customers/member_id/block-toggle') }}";
+      url = url.replace('member_id', memberId);
+      $.ajax({
+        url: url,
+        type: 'GET',
+        success: function(response) {
+          if (response.success) {
+            // alert(response.message);
+            if (tableId && tableId === 'blocked-members') {
+              // Use DataTables API to remove the row
+              let table = $(`#${tableId}`).DataTable();
+              let row = table.row($(`#${tableId} tbody tr[data-id="${memberId}"]`));
+              row.remove().draw(); // Removes the row and redraws the table
+            } else {
+              const action = $(button).text().trim() === 'Block' ? 'Unblock' : 'Block';
+              $(button).html(`<i class="bi bi-${action === 'Block' ? 'ban' : 'check2-circle'} me-2"></i>${action}`);
+            }
+          } else {
+            alert('Error: Unable to toggle block status.');
+          }
+        },
+        error: function() {
+          alert('Error: Could not process request.');
+        }
+      });
+    }
   </script>
   @stack('scripts')
 </body>

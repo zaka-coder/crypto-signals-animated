@@ -61,8 +61,7 @@
                     );
                 }
               @endphp
-              <tr
-                class="@if ($remainingDays && $remainingDays <= 2) red-text
+              <tr data-id="{{ $member->id }}" class="@if ($remainingDays && $remainingDays <= 2) red-text
               @elseif ($remainingDays && $remainingDays > 2 && $remainingDays <= 10) yellow-text @endif">
                 <td data-cell="Sr.No" class="align-middle  " style="text-align: center">{{ $loop->iteration }}</td>
                 <td data-cell="Member Name" class="align-middle  " style="text-align: center">{{ $member->name ?? '' }}
@@ -112,7 +111,7 @@
                             class="bi bi-arrow-repeat me-2"></i>Renew
                           Plan</a>
                       </li>
-                      <li><a class="dropdown-item" href="{{ route('customers.blockToggle', $member) }}">
+                      <li><a class="dropdown-item" href="javascript:;" onclick="toggleBlockMember({{ $member->id }}, this)">
                           @if ($member->is_blocked)
                             <i class="bi bi-check2-circle me-2"></i>Unblock
                           @else
@@ -123,14 +122,14 @@
                       <li class="dropdown-divider"></li>
                       <li>
                         <a class="dropdown-item text-danger" href="javascript:;"
-                          onclick="deleteMember({{ $member->id }})"><i class="bi bi-trash-fill me-2"></i>Delete</a>
+                          onclick="deleteMember({{ $member->id, 'all-members' }})"><i class="bi bi-trash-fill me-2"></i>Delete</a>
 
                         {{-- Delete Form --}}
-                        <form id="delete-form-{{ $member->id }}" action="{{ route('customers.destroy', $member) }}"
+                        {{-- <form id="delete-form-{{ $member->id }}" action="{{ route('customers.destroy', $member) }}"
                           method="POST" class="d-none">
                           @csrf
                           @method('DELETE')
-                        </form>
+                        </form> --}}
                       </li>
                     </ul>
                   </div>
