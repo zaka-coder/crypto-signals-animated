@@ -5,11 +5,17 @@
   </style>
 @endsection
 @section('currentPage')
-  @if ($filter != null)
-    Members with {{ $filter }} subscription
+  @if ($category)
+    Members with {{ $category->name ?? '' }} ({{ $category->parent->name ?? '-' }}) subscription
   @else
     All Members
   @endif
+
+  {{-- @if ($filter != null)
+    Members with {{ $filter }} subscription
+  @else
+    All Members
+  @endif --}}
 @endsection
 @section('content')
   <div class="card">

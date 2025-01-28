@@ -22,11 +22,6 @@ Route::get('/', function () {
 Route::middleware(['auth', 'admin'])->group(function () {
   Route::resource('customers', CustomerController::class);
 
-
-  // Route::get('/dashboard', function () {
-  //   return view('admin.dashboard');
-  // });
-
   Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
   Route::get('/blocked-members', function () {
@@ -34,23 +29,30 @@ Route::middleware(['auth', 'admin'])->group(function () {
     return view('admin.members.blocked-members', compact('customers'));
   });
 
+  Route::get('/active-members', function () {
+    $customers = \App\Models\Customer::where('expires_at', '>=', now())->get();
+    return view('admin.members.active-members', compact('customers'));
+  });
+
   Route::get('/expired-members', function () {
-    $customers = \App\Models\Customer::where('expires_at', '<', now()->subDays(3))
+    $customers = \App\Models\Customer::where('expires_at', '<', now())
       ->orWhere('status', 'expired')
       ->get();
     return view('admin.members.expired-members', compact('customers'));
   });
 
-  Route::get('/active-members', function () {
-    $customers = \App\Models\Customer::where('expires_at', '>', now())->get();
-    return view('admin.members.active-members', compact('customers'));
-  });
+  // Route::get('/expired-members', function () {
+  //   $customers = \App\Models\Customer::where('expires_at', '<', now()->subDays(3))
+  //     ->orWhere('status', 'expired')
+  //     ->get();
+  //   return view('admin.members.expired-members', compact('customers'));
+  // });
 
-  Route::get('/upcoming-renewal', function () {
-    // fetch all customers whose expires_at is in upcoming 7 days or less than upto 3 days from now
-    $customers = \App\Models\Customer::orderBy('expires_at', 'asc')->where('expires_at', '<=', now()->addDays(7))->where('expires_at', '>=', now()->subDays(3))->where('status', 'active')->get();
-    return view('admin.members.upcoming-renewal', compact('customers'));
-  });
+  // Route::get('/upcoming-renewal', function () {
+  //   // fetch all customers whose expires_at is in upcoming 7 days or less than upto 3 days from now
+  //   $customers = \App\Models\Customer::orderBy('expires_at', 'asc')->where('expires_at', '<=', now()->addDays(7))->where('expires_at', '>=', now()->subDays(3))->where('status', 'active')->get();
+  //   return view('admin.members.upcoming-renewal', compact('customers'));
+  // });
 
   Route::get('/recyclebin', function () {
     $customers = \App\Models\Customer::onlyTrashed()->get();

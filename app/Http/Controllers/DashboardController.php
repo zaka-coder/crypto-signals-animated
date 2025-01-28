@@ -12,14 +12,24 @@ class DashboardController extends Controller
   public function index()
   {
     // fetch all customers whose expires_at is in upcoming 7 days or less than upto 3 days from now
-    $expiringCustomers = \App\Models\Customer::orderBy('expires_at', 'asc')->where('expires_at', '<=', now()->addDays(7))->where('expires_at', '>=', now()->subDays(3))->where('status', 'active')->get();
+    // $expiringCustomers = \App\Models\Customer::orderBy('expires_at', 'asc')->where('expires_at', '<=', now()->addDays(7))->where('expires_at', '>=', now()->subDays(3))->where('status', 'active')->get();
 
-    $expiredCustomers = \App\Models\Customer::where('expires_at', '<', now()->subDays(3))
+    // $expiredCustomers = \App\Models\Customer::where('expires_at', '<', now()->subDays(3))
+    //   ->orWhere('status', 'expired')
+    //   ->get();
+
+    $expiringCustomers = \App\Models\Customer::orderBy('expires_at', 'asc')
+      ->where('expires_at', '<=', now()->addDays(7))
+      ->where('expires_at', '>=', now()) // Ensure it's not already expired
+      ->where('status', 'active')
+      ->get();
+
+    $expiredCustomers = \App\Models\Customer::where('expires_at', '<', now())
       ->orWhere('status', 'expired')
       ->get();
 
     $totalCustomers = \App\Models\Customer::all();
-    $activeCustomers = \App\Models\Customer::where('expires_at', '>', now())->get();
+    $activeCustomers = \App\Models\Customer::where('expires_at', '>=', now())->get();
 
     // Fetch revenue data for charts
     $monthlyRevenue = $this->getMonthlyRevenueData(); // Monthly revenue data

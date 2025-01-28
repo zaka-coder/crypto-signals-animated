@@ -13,13 +13,23 @@ class CustomerController extends Controller
   {
     $customers = Customer::query();
 
-    // Apply filtering based on category name
-    $filter = $request->query('filter');
-    if ($filter) {
-      $customers = $customers->whereHas('category', function ($query) use ($filter) {
-        $query->where('name', 'like', '%' . $filter . '%');
+    // // Apply filtering based on category name
+    // $filter = $request->query('filter');
+    // if ($filter) {
+    //   $customers = $customers->whereHas('category', function ($query) use ($filter) {
+    //     $query->where('name', 'like', '%' . $filter . '%');
+    //   });
+    // }
+
+    // Apply filtering based on category id
+    $categoryId = $request->query('category_id');
+    if ($categoryId) {
+      $customers = $customers->whereHas('category', function ($query) use ($categoryId) {
+        $query->where('id',  $categoryId);
       });
     }
+
+    $category = Category::find($categoryId);
 
     // Retrieve customers with their category relationship
     $customers = $customers->with('category')->get();
@@ -36,8 +46,18 @@ class CustomerController extends Controller
 
   public function create()
   {
-    $categories = Category::all();
-    return view('admin.members.create', compact('categories'));
+    // Fetch all categories with their subcategories
+    $categories = Category::with('subCategories')->get();
+
+    // Group categories by their parent
+    $groupedCategories = $categories->whereNull('parent_id')->map(function ($category) {
+        return [
+            'parent' => $category,
+            'subCategories' => $category->subCategories
+        ];
+    });
+
+    return view('admin.members.create', compact('groupedCategories'));
   }
   public function store(Request $request)
   {
@@ -115,8 +135,19 @@ class CustomerController extends Controller
       return redirect()->route('customers.index')->with('error', 'Member is blocked. Please unblock the member first.');
     }
 
-    $categories = Category::all();
-    return view('admin.members.renew', compact('customer', 'categories'));
+    // $categories = Category::all();
+    // Fetch all categories with their subcategories
+    $categories = Category::with('subCategories')->get();
+
+    // Group categories by their parent
+    $groupedCategories = $categories->whereNull('parent_id')->map(function ($category) {
+        return [
+            'parent' => $category,
+            'subCategories' => $category->subCategories
+        ];
+    });
+
+    return view('admin.members.renew', compact('customer', 'groupedCategories'));
   }
 
   public function renewPlanStore(Request $request, Customer $customer)

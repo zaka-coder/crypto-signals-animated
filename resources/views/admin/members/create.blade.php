@@ -41,8 +41,16 @@
               <h5 class="mb-3">Subscription Plan <span class="text-danger">*</span></h5>
               <select class="form-select" name="category_id" id="category">
                 <option value="">Select...</option>
-                @foreach ($categories as $key => $category)
+                {{-- @foreach ($categories as $key => $category)
                   <option value="{{ $category->id }}" data-price="{{ $category->price }}">{{ $category->name }}</option>
+                @endforeach --}}
+
+                @foreach ($groupedCategories as $group)
+                  <optgroup label="{{ $group['parent']->name }}">
+                    @foreach ($group['subCategories'] as $subCategory)
+                      <option value="{{ $subCategory->id }}" data-price="{{ $subCategory->price }}">{{ $subCategory->name }}</option>
+                    @endforeach
+                  </optgroup>
                 @endforeach
               </select>
               @error('category_id')

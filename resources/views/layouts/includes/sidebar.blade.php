@@ -2,7 +2,7 @@
 <aside class="sidebar-wrapper " data-simplebar="true">
   <div class="sidebar-header">
     <div class="logo-icon">
-      <img src="{{theme('assets/images/logo-icon.png')}}" class="logo-img" alt="">
+      <img src="{{ theme('assets/images/logo-icon.png') }}" class="logo-img" alt="">
     </div>
     <div class="logo-name flex-grow-1">
       <h5 class="mb-0">Abucartel</h5>
@@ -35,8 +35,8 @@
           </li>
           <li><a href="/active-members"><i class="material-icons-outlined">arrow_right</i>Active Members</a>
           </li>
-          <li><a href="/upcoming-renewal"><i class="material-icons-outlined">arrow_right</i>Upcoming Renewals</a>
-          </li>
+          {{-- <li><a href="/upcoming-renewal"><i class="material-icons-outlined">arrow_right</i>Upcoming Renewals</a>
+          </li> --}}
           <li><a href="/expired-members"><i class="material-icons-outlined">arrow_right</i>Expired Members</a>
           </li>
           <li><a href="/blocked-members"><i class="material-icons-outlined">arrow_right</i>Blocked Members</a>
@@ -49,22 +49,46 @@
       </li>
       <li class="menu-label">General</li>
       <li>
-        <a href="javascript:;">
+          @php
+            $allCategories = \App\Models\Category::with('subCategories')->get();
+
+            // Group categories by their parent
+            $groupedCategoriesByParent = $allCategories->whereNull('parent_id')->map(function ($category) {
+                return [
+                    'parent' => $category,
+                    'subCategories' => $category->subCategories,
+                ];
+            });
+          @endphp
+
+          @foreach ($groupedCategoriesByParent as $groupCategory)
+          <a href="javascript:;">
+            <div class="parent-icon"><i class="material-icons-outlined">category</i>
+            </div>
+            <div class="menu-title">{{ $groupCategory['parent']->name }} Categories</div>
+          </a>
+          <ul>
+            @foreach ($groupCategory['subCategories'] as $subCategory)
+              <li><a href="{{ route('customers.index', ['category_id' => $subCategory->id]) }}"><i
+                    class="material-icons-outlined">arrow_right</i>{{ $subCategory->name }}</a>
+              </li>
+            @endforeach
+          </ul>
+          @endforeach
+
+        {{-- <a href="javascript:;">
           <div class="parent-icon"><i class="material-icons-outlined">category</i>
           </div>
           <div class="menu-title">Categories</div>
         </a>
         <ul>
-          @php
-          $categories = \App\Models\Category::all();
-          @endphp
-
           @foreach ($categories as $category)
-          <li><a href="{{ route('customers.index', ['filter' => $category->name]) }}"><i
-                class="material-icons-outlined">arrow_right</i>{{ $category->name }}</a>
-          </li>
+            <li><a href="{{ route('customers.index', ['filter' => $category->name]) }}"><i
+                  class="material-icons-outlined">arrow_right</i>{{ $category->name }}</a>
+            </li>
           @endforeach
-        </ul>
+        </ul> --}}
+
       </li>
 
     </ul>
