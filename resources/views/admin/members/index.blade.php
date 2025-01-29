@@ -37,6 +37,9 @@
           style="border-collapse: collapse!important;border-left: 1px solid #80808059;">
           <thead>
             <tr>
+              <th class="align-middle text-center" data-orderable="false">
+                <input type="checkbox" id="select-all"> <label for="select-all">Select All</label>
+              </th>
               <th class="align-middle text-center">Sr .No</th>
               <th class="align-middle text-center">Member Name</th>
               <th class="align-middle text-center">Discord Username</th>
@@ -61,8 +64,12 @@
                     );
                 }
               @endphp
-              <tr data-id="{{ $member->id }}" class="@if ($remainingDays && $remainingDays <= 2) red-text
+              <tr data-id="{{ $member->id }}"
+                class="@if ($remainingDays && $remainingDays <= 2) red-text
               @elseif ($remainingDays && $remainingDays > 2 && $remainingDays <= 10) yellow-text @endif">
+                <td class="align-middle text-center">
+                  <input type="checkbox" class="member-checkbox" value="{{ $member->id }}">
+                </td>
                 <td data-cell="Sr.No" class="align-middle  " style="text-align: center">{{ $loop->iteration }}</td>
                 <td data-cell="Member Name" class="align-middle  " style="text-align: center">{{ $member->name ?? '' }}
                 </td>
@@ -72,7 +79,8 @@
                 <td data-cell="Whatsapp No" class="align-middle  " style="text-align: center">
                   {{ $member->whatsapp ?? '' }}
                 </td>
-                <td data-cell="Email Address" class="align-middle  " style="text-align: center">{{ $member->email ?? '' }}
+                <td data-cell="Email Address" class="align-middle  " style="text-align: center">
+                  {{ $member->email ?? '' }}
                 </td>
                 <td data-cell="Subscription Plan" class="align-middle  " style="text-align: center">
                   {{ $member->category->name ?? '' }}
@@ -111,7 +119,8 @@
                             class="bi bi-arrow-repeat me-2"></i>Renew
                           Plan</a>
                       </li>
-                      <li><a class="dropdown-item" href="javascript:;" onclick="toggleBlockMember({{ $member->id }}, this)">
+                      <li><a class="dropdown-item" href="javascript:;"
+                          onclick="toggleBlockMember({{ $member->id }}, this)">
                           @if ($member->is_blocked)
                             <i class="bi bi-check2-circle me-2"></i>Unblock
                           @else
@@ -122,14 +131,8 @@
                       <li class="dropdown-divider"></li>
                       <li>
                         <a class="dropdown-item text-danger" href="javascript:;"
-                          onclick="deleteMember({{ $member->id, 'all-members' }})"><i class="bi bi-trash-fill me-2"></i>Delete</a>
-
-                        {{-- Delete Form --}}
-                        {{-- <form id="delete-form-{{ $member->id }}" action="{{ route('customers.destroy', $member) }}"
-                          method="POST" class="d-none">
-                          @csrf
-                          @method('DELETE')
-                        </form> --}}
+                          onclick="deleteMember({{ $member->id, 'all-members' }})"><i
+                            class="bi bi-trash-fill me-2"></i>Delete</a>
                       </li>
                     </ul>
                   </div>
@@ -148,11 +151,75 @@
       var table = $('#all-members').DataTable({
         lengthChange: false,
         buttons: ['copy', 'excel'],
-        // sort: false
+        // sort: false,
+        columnDefs: [{
+            orderable: false,
+            targets: 0
+          } // Disable ordering on the first column (checkbox)
+        ],
+        order: [],
       });
 
       table.buttons().container()
         .appendTo('#all-members_wrapper .col-md-6:eq(0)');
+
+      // Add the "Delete Selected" button next to the DataTable buttons
+      $('<button id="delete-selected" class="btn btn-danger ms-3">Delete Selected Members</button>')
+        .appendTo('#all-members_wrapper .col-md-6:eq(0)');
+
+    });
+
+    // Delete selected members
+    $(document).ready(function() {
+      let table = $('#all-members').DataTable();
+
+      // Select/Unselect all checkboxes
+      $('#select-all').on('change', function() {
+        $('.member-checkbox').prop('checked', this.checked);
+      });
+
+      // Delete selected members
+      $('#delete-selected').on('click', function() {
+        let selectedIds = [];
+        $('.member-checkbox:checked').each(function() {
+          selectedIds.push($(this).val());
+        });
+
+        if (selectedIds.length === 0) {
+          alert('No members selected.');
+          return;
+        }
+
+        if (!confirm('Are you sure you want to delete the selected members?')) {
+          return;
+        }
+
+        $.ajax({
+          url: '/customers/delete-multiple',
+          type: 'POST',
+          data: {
+            _token: '{{ csrf_token() }}',
+            ids: selectedIds
+          },
+          success: function(response) {
+            if (response.success) {
+              // uncheck the select-all checkbox
+              $('#select-all').prop('checked', false);
+
+              // Remove rows from DataTable
+              for (let id of selectedIds) {
+                table.row($(`#all-members tbody tr[data-id="${id}"]`)).remove();
+              }
+              table.draw(); // Redraw table
+            } else {
+              alert('Error: Unable to delete members.');
+            }
+          },
+          error: function() {
+            alert('Error: Could not process request.');
+          }
+        });
+      });
     });
   </script>
 @endpush

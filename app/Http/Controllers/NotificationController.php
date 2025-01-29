@@ -47,4 +47,20 @@ class NotificationController extends Controller
     Notification::where('is_read', false)->update(['is_read' => true]);
     return redirect()->back()->with('success', 'All notifications marked as read.');
   }
+
+  public function deleteMultiple(Request $request)
+  {
+    try {
+      $ids = $request->ids;
+      if (!$ids) {
+        return response()->json(['success' => false, 'message' => 'No notifications selected.'], 400);
+      }
+
+      Notification::whereIn('id', $ids)->delete();
+
+      return response()->json(['success' => true, 'message' => 'Selected notifications deleted successfully.']);
+    } catch (\Exception $e) {
+      return response()->json(['success' => false, 'message' => 'Error deleting notifications.'], 500);
+    }
+  }
 }

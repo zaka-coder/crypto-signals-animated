@@ -61,12 +61,6 @@
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item text-success" href="javascript:;"
                           onclick="restoreMember({{ $member->id }})"><i class="bi bi-recycle me-2"></i>Restore</a>
-
-                        {{-- Restore Form --}}
-                        {{-- <form id="restore-form-{{ $member->id }}" action="{{ route('customers.restore', $member) }}"
-                      method="POST" class="d-none">
-                      @csrf
-                    </form> --}}
                       </li>
                     </ul>
                   </div>
@@ -90,13 +84,6 @@
       table.buttons().container()
         .appendTo('#deleted-members_wrapper .col-md-6:eq(0)');
     });
-
-    // function restoreMember(id) {
-    //   if (confirm('Are you sure you want to restore this member?')) {
-    //     // document.getElementById('restore-form-' + id).submit();
-
-    //   }
-    // }
 
     function restoreMember(memberId) {
       if (confirm('Are you sure you want to restore this member?')) {

@@ -51,10 +51,10 @@ class CustomerController extends Controller
 
     // Group categories by their parent
     $groupedCategories = $categories->whereNull('parent_id')->map(function ($category) {
-        return [
-            'parent' => $category,
-            'subCategories' => $category->subCategories
-        ];
+      return [
+        'parent' => $category,
+        'subCategories' => $category->subCategories
+      ];
     });
 
     return view('admin.members.create', compact('groupedCategories'));
@@ -141,10 +141,10 @@ class CustomerController extends Controller
 
     // Group categories by their parent
     $groupedCategories = $categories->whereNull('parent_id')->map(function ($category) {
-        return [
-            'parent' => $category,
-            'subCategories' => $category->subCategories
-        ];
+      return [
+        'parent' => $category,
+        'subCategories' => $category->subCategories
+      ];
     });
 
     return view('admin.members.renew', compact('customer', 'groupedCategories'));
@@ -320,6 +320,23 @@ class CustomerController extends Controller
     $customer->delete();
     return response()->json(['success' => true, 'message' => 'Member deleted successfully!']);
   }
+
+  public function deleteMultiple(Request $request)
+  {
+    try {
+      $ids = $request->ids;
+      if (!$ids) {
+        return response()->json(['success' => false, 'message' => 'No members selected.'], 400);
+      }
+
+      Customer::whereIn('id', $ids)->delete();
+
+      return response()->json(['success' => true, 'message' => 'Selected members deleted successfully.']);
+    } catch (\Exception $e) {
+      return response()->json(['success' => false, 'message' => 'Error deleting members.'], 500);
+    }
+  }
+
 
   public function restore($id)
   {

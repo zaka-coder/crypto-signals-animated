@@ -22,6 +22,11 @@ Route::get('/', function () {
 Route::middleware(['auth', 'admin'])->group(function () {
   Route::resource('customers', CustomerController::class);
 
+  Route::post('/customers/delete-multiple', [CustomerController::class, 'deleteMultiple'])->name('customers.deleteMultiple');
+
+  Route::post('/notifications/delete-multiple', [NotificationController::class, 'deleteMultiple'])->name('notifications.deleteMultiple');
+
+
   Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
   Route::get('/blocked-members', function () {
