@@ -131,7 +131,7 @@
                       <li class="dropdown-divider"></li>
                       <li>
                         <a class="dropdown-item text-danger" href="javascript:;"
-                          onclick="deleteMember({{ $member->id, 'all-members' }})"><i
+                          onclick="deleteMember({{ $member->id }}, 'all-members')"><i
                             class="bi bi-trash-fill me-2"></i>Delete</a>
                       </li>
                     </ul>

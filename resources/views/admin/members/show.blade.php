@@ -28,13 +28,6 @@
               <button type="button" class="btn btn-outline-danger" onclick="deleteMember({{ $customer->id }})"><i
                   class="bi bi-trash3"></i> Delete</button>
             </div>
-
-            <!-- Delete Form -->
-            {{-- <form id="delete-form-{{ $customer->id }}" action="{{ route('customers.destroy', $customer) }}" method="POST"
-              class="d-none">
-              @csrf
-              @method('DELETE')
-            </form> --}}
           </div>
 
           <div class="w-100 mb-5">
